@@ -9,6 +9,14 @@ node {
           echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
       }
 
+      stage('Verify if Tag Commit'){
+        if (gitTagCheck()) {
+            echo 'It is a tagged commit'
+        } else {
+            echo 'It is not a tagged commit'
+        }
+      }
+
       stage('Test'){
         // make build
         sh """
