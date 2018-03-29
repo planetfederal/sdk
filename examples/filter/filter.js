@@ -77,7 +77,7 @@ class FilterComponent extends React.PureComponent {
       currentFilter.push('any');
     }
     const filter = [this.state.operator, this.state.key, value];
-    this.props.updateLayer(this.props.source, {filter: [...currentFilter, filter]});
+    this.props.addLayerFilter(this.props.source, filter);
   }
 
   // Action on reset
@@ -155,8 +155,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateLayer: (sourceName, filter) => {
-      dispatch(mapActions.updateLayer(sourceName, filter));
+    addLayerFilter: (sourceName, filter) => {
+      dispatch(mapActions.addLayerFilter(sourceName, filter));
     },
     clearLayerFilter: (sourceName) => {
       dispatch(mapActions.clearLayerFilter(sourceName));

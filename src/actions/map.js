@@ -198,6 +198,21 @@ export function clearLayerFilter(layerId) {
   };
 }
 
+/** Action to filter a layer object in the map state.
+ *  @param {string} layerId String id for the layer to be updated.
+ *  @param {Object} filterDef New filter definition to be added to the current list of filters.
+ *    Example - ['any',['==','STATE_NAME','Kentucky']]
+ *    Documentation - https://www.mapbox.com/mapbox-gl-js/style-spec/#other-filter
+ *  @returns {Object} Action object to pass to reducer.
+ */
+export function addLayerFilter(layerId, filterDef) {
+  return {
+    type: MAP.ADD_LAYER_FILTER,
+    layerId,
+    filterDef,
+  };
+}
+
 /** Action to update cluster status in the map state.
  *  @param {string} sourceName Name of the source to be added.
  *  @param {boolean} isClustered Is the source clustered?

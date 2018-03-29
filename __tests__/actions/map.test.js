@@ -171,6 +171,15 @@ describe('actions', () => {
     expect(actions.clearLayerFilter(layerId)).toEqual(expectedAction);
   });
 
+  it('should create an action to update a layer filter', () => {
+    const layerId = 'osm';
+    const expectedAction = {
+      type: MAP.CLEAR_LAYER_FILTER,
+      layerId,
+    };
+    expect(actions.addLayerFilter(layerId)).toEqual(expectedAction);
+  });
+
   it('should create an action to add features', () => {
     const sourceName = 'tegola';
     const features = [
