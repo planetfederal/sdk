@@ -115,7 +115,13 @@ export function setBearing(bearing) {
 }
 
 /** Action to add a layer object in the map state.
- *  @param {Object} layerDef Layer properties.
+ *  @typedef {Object} layerDef
+ *  @property {string|Number} id - layer identifier
+ *  @property {string} source - source name
+ *  @property {string} type - layer type
+ *  @property {Object} [metadata] - layer metadata ex: "bnd:legend-type" can be one of "image", "html", "href"
+ *  @property {Object} [paint] - layer style(mapbox specs)
+ *  @param {layerDef|Object} layerDef Layer properties.
  *  @param {string} layerTitle Title of the layer to be added.
  *  @param {string} positionId String id for the layer.
  *
