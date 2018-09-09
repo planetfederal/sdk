@@ -15,8 +15,9 @@
  * @desc Action Defintions for the map.
  */
 
-import {MAP, CONTEXT} from '../action-types';
-import {TITLE_KEY, TIME_KEY} from '../constants';
+import {CONTEXT, MAP} from '../action-types';
+import {TIME_KEY, TITLE_KEY} from '../constants';
+
 import {encodeQueryObject} from '../util';
 
 const sourceTypes = [
@@ -130,10 +131,19 @@ export function addLayer(layerDef, layerTitle, positionId) {
 }
 
 /** Action to add a source object in the map state.
+ *  @typedef {Object} sourceDef
+ *  @property {string} type - source type
+ *  @property {string|Object} [data] - url or featureCollection
+ *  @property {Number} [tileSize] - tile size in pixel
+ *  @property {Array.<String>} tiles - urls
+ *  @property {string} [crossOrigin] if the server allow cross origin.
+ *  @property {string} [scheme] source scheme.
+ *  @property {string} [attribution] source attribution
+ *  @property {Number} [maxzoom] source Max Zoom
  *  @param {string} sourceName Name of the source to be added.
- *  @param {Object} sourceDef Source properties.
+ *  @param {sourceDef|Object} sourceDef Source properties.
  *
- *  @returns {Object} Action object to pass to reducer.
+ *  @returns {sourceDef|Object} Action object to pass to reducer.
  */
 export function addSource(sourceName, sourceDef) {
   if (sourceTypes.indexOf(sourceDef.type) === -1) {
