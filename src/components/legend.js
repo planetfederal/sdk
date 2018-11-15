@@ -262,9 +262,12 @@ export class Legend extends React.Component {
       return (<canvas ref={(c) => {
         if (c !== null) {
           let vectorContext = toContext(c.getContext('2d'), {size: size});
+          const sources = {};
+          sources[layer.source] = layer_src;
           const fake_style = getFakeStyle(
             props.sprite,
             layers,
+            sources,
             props.mapbox.baseUrl,
             props.mapbox.accessToken
           );
