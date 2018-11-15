@@ -1291,7 +1291,7 @@ describe('Map component', () => {
     const baseUrl = 'http://example.com';
     const accessToken = 'mytoken';
     const layers = [{id: 'foo'}];
-    const style = getFakeStyle(sprite, layers, baseUrl, accessToken);
+    const style = getFakeStyle(sprite, layers, {}, baseUrl, accessToken);
     expect(style.sprite).toEqual(`${baseUrl}/sprite?access_token=${accessToken}`);
   });
 
