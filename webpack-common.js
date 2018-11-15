@@ -15,7 +15,8 @@ module.exports = {
       const name = subDirs[i].split(path.sep).pop();
       if (name !== 'resources' && (dev || conf.skip.indexOf(name) === -1)) {
         entry[name] = dev ? [
-          'webpack/hot/only-dev-server'
+          'webpack/hot/only-dev-server',
+          'babel-polyfill'
         ] : ['babel-polyfill'];
         entry[name].push(`.${path.sep}${subDirs[i]}${path.sep}app.js`);
       }

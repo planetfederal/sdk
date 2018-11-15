@@ -610,11 +610,12 @@ function hydrateLayerGroup(layersDef, layerGroup) {
   return hydrated_group;
 }
 
-export function getFakeStyle(sprite, layers, baseUrl, accessToken) {
+export function getFakeStyle(sprite, layers, sources, baseUrl, accessToken) {
   const fake_style = {
     version: 8,
     sprite,
     layers,
+    sources,
   };
   if (sprite && sprite.indexOf(MAPBOX_PROTOCOL) === 0) {
     fake_style.sprite = `${baseUrl}/sprite?access_token=${accessToken}`;
@@ -1040,8 +1041,9 @@ export class Map extends React.Component {
    *  @param {Object} olLayer OpenLayers layer object.
    *  @param {Object[]} layers Array of Mapbox GL layer objects.
    *  @param {string} sprite The sprite of the map.
+   *  @param {Object} glSource The Mapbox GL soure definition.
    */
-  applyStyle(olLayer, layers, sprite) {
+  applyStyle(olLayer, layers, sprite, glSource) {
     // filter out the layers which are not visible
     const render_layers = [];
     const spriteLayers = [];
@@ -1058,10 +1060,12 @@ export class Map extends React.Component {
     if (spriteLayers.length > 0) {
       this.applySpriteAnimation(olLayer, spriteLayers);
     }
-
+    const sources = {};
+    sources[layers[0].source] = glSource;
     const fake_style = getFakeStyle(
       sprite || this.props.map.sprite,
       render_layers,
+      sources,
       this.props.mapbox.baseUrl,
       this.props.mapbox.accessToken,
     );
@@ -1101,7 +1105,7 @@ export class Map extends React.Component {
           zIndex: idx,
           opacity: layers[0].paint ? layers[0].paint['raster-opacity'] : undefined,
         });
-        this.applyStyle(layer, layers, sprite);
+        this.applyStyle(layer, layers, sprite, glSource);
         return layer;
       case 'geojson':
         layer = new VectorLayer({
@@ -1109,7 +1113,7 @@ export class Map extends React.Component {
           zIndex: idx,
           source,
         });
-        this.applyStyle(layer, layers, sprite);
+        this.applyStyle(layer, layers, sprite, glSource);
         return layer;
       case 'vector':
         const time = getKey(this.props.map.metadata, TIME_KEY);
@@ -1123,7 +1127,7 @@ export class Map extends React.Component {
           zIndex: idx,
           source,
         });
-        this.applyStyle(layer, layers, sprite);
+        this.applyStyle(layer, layers, sprite, glSource);
         return layer;
       case 'image':
         return new ImageLayer({
@@ -1253,7 +1257,7 @@ export class Map extends React.Component {
           current_layers.push(getLayerById(prevProps ? prevProps.map.layers : this.props.map.layers, lyr_group[j].id));
         }
         if (!jsonEquals(lyr_group, current_layers)) {
-          this.applyStyle(ol_layer, hydrateLayerGroup(layersDef, lyr_group), sprite);
+          this.applyStyle(ol_layer, hydrateLayerGroup(layersDef, lyr_group), sprite, source);
         }
 
         // update the min/maxzooms
@@ -1980,16 +1984,24 @@ function mapDispatchToProps(dispatch) {
 }
 
 export function getOLStyleFunctionFromMapboxStyle(styles) {
-  const sources = styles.map(function(style) {
-    return style.id;
-  });
+  const sources = {};
+  for (let i = 0, ii = styles.length; i < ii; ++i) {
+    const style = styles[i];
+    const id = style.id;
+    style.source = id;
+    sources[id] = {
+      type: 'geojson',
+    };
+  }
   const glStyle = {
     version: 8,
     layers: styles,
-    sources: sources
+    sources,
   };
   const olLayer = new VectorLayer();
-  return mb2olstyle(olLayer, glStyle, sources);
+  return mb2olstyle(olLayer, glStyle, styles.map(function(style) {
+    return style.id;
+  }));
 }
 
 // Ensure that withRef is set to true so getWrappedInstance will return the Map.
