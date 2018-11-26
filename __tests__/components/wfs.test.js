@@ -61,9 +61,12 @@ describe('WfsController component.', () => {
     const exception = '<ows:ExceptionReport xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ows="http://www.opengis.net/ows" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0.0" xsi:schemaLocation="http://www.opengis.net/ows https://demo.boundlessgeo.com/geoserver/schemas/ows/1.0.0/owsExceptionReport.xsd"><ows:Exception exceptionCode="NoApplicableCode"><ows:ExceptionText>Transaction support is not enabled</ows:ExceptionText></ows:Exception></ows:ExceptionReport>';
 
     let message;
-
+    let start = false;
     const props = {
       store,
+      onStartTransaction: () => {
+        start = true;
+      },
       onRequestError: (error) => {
         message = error.message;
       },
@@ -90,6 +93,7 @@ describe('WfsController component.', () => {
       // if everything has gone well the action will no longer be in the queue
       expect(store.getState().wfs.actions).toEqual({});
       expect(message).toBe('Transaction support is not enabled');
+      expect(start).toBe(true);
       done();
     }, 300);
   });

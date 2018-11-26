@@ -107,6 +107,7 @@ class WfsController extends Component {
       }
       fetchOptions.headers.set('Content-Type', 'text/xml');
       fetchOptions.body = payload;
+      this.props.onStartTransaction(action);
       fetch(target_url, fetchOptions).then((response) => {
         if (response.ok) {
           return response.text();
@@ -176,6 +177,8 @@ WfsController.propTypes = {
   actions: PropTypes.object,
   /** List of map sources. */
   sources: PropTypes.object,
+  /** onStartTransaction callback function, called when the transaction begins. */
+  onStartTransaction: PropTypes.func,
   /** onFinishTransaction callback function, called when the transaction has finished. */
   onFinishTransaction: PropTypes.func,
   /** onRequestError callback function, called when a request fails. */
@@ -187,6 +190,7 @@ WfsController.propTypes = {
 WfsController.defaultProps = {
   actions: {},
   sources: {},
+  onStartTransaction: () => {},
   onFinishTransaction: () => {},
   onRequestError: () => {},
   fetchOptions: {
