@@ -31,7 +31,7 @@ SDK-based apps do require additional dependencies. These include Redux for
 managing state and node-sass for preprocessing CSS.
 
 ```
-yarn add node-sass-chokidar redux react-redux ol ol-mapbox-style
+yarn add node-sass-chokidar redux react-redux@^5.1.1 ol ol-mapbox-style
 ```
 
 ### Add sass-building scripts to package.json
@@ -68,24 +68,6 @@ It will install the dist-version of the library.
 
 ```bash
 yarn add @boundlessgeo/sdk
-```
-
-#### From GitHub
-
-This is the way to install SDK if the latest features are needed
-or development on SDK is planned.
-
-The following steps will clone SDK, install its dependencies,
-build the library, and finally add it to the app.
-
-```bash
-cd ..
-git clone https://github.com/boundlessgeo/sdk
-cd sdk
-npm install
-npm run build:dist
-cd ../sdk-starter
-yarn add file:../sdk/dist
 ```
 
 ## Add a basic map:
@@ -151,39 +133,17 @@ componentDidMount() {
 
 ### Add the map component to the application
 
-After the last `</p>` tag add the following to add an SDK map:
+Remove the header part, and replace it with an SDK map:
 
 ```javascript
-<SdkMap store={store} />
+  render() {
+    return (
+      <div className="App">
+        <SdkMap store={store} />
+      </div>
+    );
+  }
 ```
-
-### Eject and change the webpack configuration
-
-Because there are some dependencies that are published as ES6, we need to have `babel-loader` process them in webpack. Unfortunately this currently requires ejecting our app.
-
-1. `yarn eject`
-2. `yarn add babel-loader`
-3. Modify `config/webpack.config.dev.js` and `config/webpack.config.prod.js`.
-
-    This section defines which files Babel will transform (search for `babel-loader`):
-    ```javascript
-      // Process JS with Babel.
-      {
-        test: /\.(js|jsx|mjs)$/,
-        include: paths.appSrc,
-        loader: require.resolve('babel-loader'),
-        ...
-      },
-    ```
-
-    The include path must be changed from:
-    ```
-    include: paths.appSrc,
-    ```
-    To:
-    ```
-    include: [paths.appSrc, path.resolve(__dirname, '../node_modules/@mapbox/mapbox-gl-style-spec'), path.resolve(__dirname, '../node_modules/ol-mapbox-style')],
-    ```
 
 ### Fire up the browser
 
@@ -195,6 +155,26 @@ yarn start
 ## Fin!
 
 Congratulations! You should have a fully operational Boundless SDK React app!
+
+## Advanced
+
+### From GitHub
+
+Instead of installing sdk from npm, you can also install it from github. This is the way to install SDK if the latest features are needed
+or development on SDK is planned.
+
+The following steps will clone SDK, install its dependencies,
+build the library, and finally add it to the app.
+
+```bash
+cd ..
+git clone https://github.com/boundlessgeo/sdk
+cd sdk
+npm install
+npm run build:dist
+cd ../sdk-starter
+yarn add file:../sdk/dist
+```
 
 ### Unit testing
 If you want to write unit tests in your application that use the SDK, make sure you have ```canvas``` installed as a ```devDependency```.
