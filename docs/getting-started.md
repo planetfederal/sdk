@@ -27,31 +27,15 @@ cd sdk-starter
 
 ### Add the app dependencies
 
-SDK-based apps do require additional dependencies. These include Redux for
-managing state and node-sass for preprocessing CSS.
+SDK-based apps do require additional dependencies. These include Redux for managing state.
 
 ```
-yarn add node-sass-chokidar redux react-redux@^5.1.1 ol ol-mapbox-style
+yarn add redux react-redux@^5.1.1 ol ol-mapbox-style
 ```
 
-### Add sass-building scripts to package.json
+### Add sass support
 
-This is a modification of the recommendations by the create-react-app authors,
-it can be reviewed in more depth [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-css-preprocessor-sass-less-etc).
-
-
-After `"scripts": {`:
-
-```json
-   "build-css": "node-sass-chokidar src/ --include-path node_modules/ -o src/",
-   "watch-css": "npm run build-css && node-sass-chokidar src/ --include-path node_modules/ -o src/ --watch --recursive",
-```
-
-`App.css` needs to be renamed with the sass extension `App.scss`:
-
-```bash
-mv src/App.css src/App.scss
-```
+Follow the instructions [here](https://facebook.github.io/create-react-app/docs/adding-a-sass-stylesheet).
 
 ### Installing SDK
 
@@ -80,15 +64,9 @@ In your favorite editor open `src/App.scss`. On the first line add:
 @import "@boundlessgeo/sdk/stylesheet/sdk.scss";
 ```
 
-Build the CSS files:
-
-```bash
-yarn run build-css
-```
-
 ### Import SDK and Redux
 
-Open `src/App.js` in your favorite editor. After the line `import './App.css';`,
+Open `src/App.js` in your favorite editor. After the line `import './App.scss';`,
 add the following imports:
 
 
@@ -119,16 +97,16 @@ mounted.
 After `class App extends Component {`, add the following lines:
 
 ```javascript
-componentDidMount() {
-  // add the OSM source
-  store.dispatch(SdkMapActions.addOsmSource('osm'));
+  componentDidMount() {
+    // add the OSM source
+    store.dispatch(SdkMapActions.addOsmSource('osm'));
 
-  // add an OSM layer
-  store.dispatch(SdkMapActions.addLayer({
-    id: 'osm',
-    source: 'osm',
-  }));
-}
+    // add an OSM layer
+    store.dispatch(SdkMapActions.addLayer({
+      id: 'osm',
+      source: 'osm',
+    }));
+  }
 ```
 
 ### Add the map component to the application
