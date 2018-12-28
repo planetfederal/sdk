@@ -7,6 +7,7 @@
 import React from 'react';
 import VectorSource from 'ol/source/Vector';
 import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
 import {mount, configure} from 'enzyme';
 import  Adapter from 'enzyme-adapter-react-16';
 
@@ -26,8 +27,9 @@ describe('tests for cluster map sources', () => {
       map: MapReducer,
     }));
 
-    const wrapper = mount(<SdkMap store={store} />);
-    map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><SdkMap ref={ref} /></Provider>);
+    map = ref.current;
   });
 
   const data = {

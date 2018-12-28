@@ -5,6 +5,7 @@ import {mount, configure} from 'enzyme';
 import  Adapter from 'enzyme-adapter-react-16';
 
 import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
 
 import ConnectedMap from '@boundlessgeo/sdk/components/map';
 import MapReducer from '@boundlessgeo/sdk/reducers/map';
@@ -18,8 +19,9 @@ describe('Map component time tests', () => {
       map: MapReducer,
     }));
 
-    const wrapper = mount(<ConnectedMap store={store} />);
-    const map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref} /></Provider>);
+    const map = ref.current;
 
     store.dispatch(MapActions.setView([-98, 40], 4));
 
@@ -52,8 +54,9 @@ describe('Map component time tests', () => {
       map: MapReducer,
     }));
 
-    const wrapper = mount(<ConnectedMap store={store} />);
-    const map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref} /></Provider>);
+    const map = ref.current;
 
     store.dispatch(MapActions.setView([-98, 40], 4));
     store.dispatch(MapActions.setMapTime('2006-06-23T03:10:00Z'));
@@ -87,14 +90,15 @@ describe('Map component time tests', () => {
     const createLayerFilter = (layer, mapTime) => {
     };
 
+    const ref = React.createRef();
     const props = {
-      store,
+      ref,
       createLayerFilter,
     };
     spyOn(props, 'createLayerFilter').and.returnValue('dummyfilter');
 
-    const wrapper = mount(<ConnectedMap {...props} />);
-    const map = wrapper.instance().getWrappedInstance();
+    mount(<Provider store={store}><ConnectedMap {...props} /></Provider>);
+    const map = ref.current;
 
     store.dispatch(MapActions.setView([-98, 40], 4));
 

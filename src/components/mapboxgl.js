@@ -548,6 +548,5 @@ function mapDispatchToProps(dispatch) {
 }
 
 /** Export the connected class by default.
- *  Ensure that withRef is set to true so getWrappedInstance will return the Map.
  */
-export default connect(mapStateToProps, mapDispatchToProps, undefined, {withRef: true})(MapboxGL);
+export default connect(mapStateToProps, mapDispatchToProps, undefined, {forwardRef: true})(MapboxGL);

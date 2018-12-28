@@ -4,6 +4,7 @@ import React from 'react';
 import {shallow, mount, configure} from 'enzyme';
 import  Adapter from 'enzyme-adapter-react-16';
 import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
 
 import MapReducer from '@boundlessgeo/sdk/reducers/map';
 import MapInfoReducer from '@boundlessgeo/sdk/reducers/mapinfo';
@@ -635,12 +636,9 @@ describe('MapboxGL component', () => {
       mapinfo: MapInfoReducer,
     }));
 
-    const props = {
-      store,
-    };
-
-    const wrapper = mount(<ConnectedMap {...props} />);
-    const map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref} /></Provider>);
+    const map = ref.current;
     // mock up our GL map
     map.map = createMapMock();
     map.onMapMoveEnd();
@@ -655,13 +653,14 @@ describe('MapboxGL component', () => {
       map: MapReducer,
     }));
 
+    const ref = React.createRef();
     const props = {
-      store,
+      ref,
       initialPopups: [(<SdkPopup coordinate={[0, 0]}><div>foo</div></SdkPopup>)],
     };
 
-    const wrapper = mount(<ConnectedMap {...props} />);
-    const map = wrapper.instance().getWrappedInstance();
+    mount(<Provider store={store}><ConnectedMap {...props} /></Provider>);
+    const map = ref.current;
     // mock up our GL map
     map.map = createMapMock();
     let types = [];
@@ -885,8 +884,9 @@ describe('MapboxGL component', () => {
       map: MapReducer,
       draw: DrawingReducer,
     }));
-    const wrapper = mount(<ConnectedMap store={store} />);
-    const map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref} /></Provider>);
+    const map = ref.current;
     // mock up our GL map
     map.map = createMapMock();
     map.draw = createMapDrawMock();
@@ -905,8 +905,9 @@ describe('MapboxGL component', () => {
       map: MapReducer,
       draw: DrawingReducer,
     }));
-    const wrapper = mount(<ConnectedMap store={store} />);
-    const map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref} /></Provider>);
+    const map = ref.current;
     // mock up our GL map
     map.map = createMapMock();
     map.draw = createMapDrawMock();
@@ -924,7 +925,7 @@ describe('MapboxGL component', () => {
     const store = createStore(combineReducers({
       map: MapReducer,
     }));
-    mount(<ConnectedMap store={store} />);
+    mount(<Provider store={store}><ConnectedMap /></Provider>);
   });
 
   it('getMapExtent should work correctly', () => {

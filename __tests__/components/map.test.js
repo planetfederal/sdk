@@ -20,6 +20,7 @@ import ImageTile from 'ol/ImageTile';
 import TileState from 'ol/TileState';
 
 import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
 import {radiansToDegrees} from '@boundlessgeo/sdk/util';
 
 import ConnectedMap, {Map} from '@boundlessgeo/sdk/components/map';
@@ -882,7 +883,7 @@ describe('Map component', () => {
     const store = createStore(combineReducers({
       map: MapReducer,
     }));
-    mount(<ConnectedMap store={store} />);
+    mount(<Provider store={store}><ConnectedMap /></Provider>);
   });
 
   it('should set the map size', () => {
@@ -890,8 +891,9 @@ describe('Map component', () => {
       map: MapReducer,
       mapinfo: MapInfoReducer,
     }));
-    const wrapper = mount(<ConnectedMap store={store} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref}/></Provider>);
+    const sdk_map = ref.current;
     sdk_map.map.getSize = function() {
       return [100, 200];
     };
@@ -905,16 +907,14 @@ describe('Map component', () => {
     const store = createStore(combineReducers({
       map: MapReducer,
     }));
-
-    const wrapper = mount(<ConnectedMap store={store} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
-
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref} /></Provider>);
+    const sdk_map = ref.current;
     store.dispatch(MapActions.addOsmSource('foo'));
     store.dispatch(MapActions.addLayer({
       id: 'foo',
       source: 'foo',
     }));
-
     let layer;
     window.setTimeout(function() {
       layer = sdk_map.map.getLayers().item(0);
@@ -932,9 +932,9 @@ describe('Map component', () => {
     const store = createStore(combineReducers({
       map: MapReducer,
     }));
-
-    const wrapper = mount(<ConnectedMap store={store} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref} /></Provider>);
+    const sdk_map = ref.current;
 
     store.dispatch(MapActions.setView([-45, -45], 11));
 
@@ -952,11 +952,9 @@ describe('Map component', () => {
       mapinfo: MapInfoReducer,
     }));
 
-    const props = {
-      store,
-    };
-    const wrapper = mount(<ConnectedMap {...props} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref}/></Provider>);
+    const sdk_map = ref.current;
 
     sdk_map.map.getSize = function() {
       return [100, 200];
@@ -976,11 +974,9 @@ describe('Map component', () => {
       mapinfo: MapInfoReducer,
     }));
 
-    const props = {
-      store,
-    };
-    const wrapper = mount(<ConnectedMap {...props} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref} /></Provider>);
+    const sdk_map = ref.current;
 
     sdk_map.map.getSize = function() {
       return [100, 200];
@@ -997,10 +993,6 @@ describe('Map component', () => {
       mapinfo: MapInfoReducer,
     }));
 
-    const props = {
-      store,
-    };
-
     nock('http://dummy')
       .get(/^.*?SERVICE=WFS&VERSION=1.1.0&SRSNAME=EPSG%3A4326&REQUEST=GetFeature&TYPENAME=dummy&OUTPUTFORMAT=JSON.*$/)
       .times(4)
@@ -1015,9 +1007,10 @@ describe('Map component', () => {
     store.dispatch(MapActions.addWmsSource('wms', 'http://dummy/wms', 'dummy', {asVector: false}));
     store.dispatch(MapActions.addWfsSource('wfs', 'http://dummy/wfs', 'dummy'));
 
-    const wrapper = mount(<ConnectedMap {...props} />);
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref}/></Provider>);
 
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const sdk_map = ref.current;
 
     setTimeout(() => {
       spyOn(sdk_map.map, 'updateSize');
@@ -1033,19 +1026,16 @@ describe('Map component', () => {
       mapinfo: MapInfoReducer,
     }));
 
-    const props = {
-      store,
-    };
-
     store.dispatch(MapActions.addWmsSource('wms', 'http://dummy/wms?', 'dummy', {asVector: false}));
     store.dispatch(MapActions.addLayer({
       id: 'mywms',
       source: 'wms',
       type: 'raster',
     }));
-    const wrapper = mount(<ConnectedMap {...props} />);
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref} /></Provider>);
 
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const sdk_map = ref.current;
 
     setTimeout(() => {
       const source = sdk_map.map.getLayers().item(0).getSource();
@@ -1060,19 +1050,16 @@ describe('Map component', () => {
       mapinfo: MapInfoReducer,
     }));
 
-    const props = {
-      store,
-    };
-
     store.dispatch(MapActions.addWmsSource('wms', 'http://dummy/wms?', 'dummy', {asVector: false, projection: 'EPSG:4326'}));
     store.dispatch(MapActions.addLayer({
       id: 'mywms',
       source: 'wms',
       type: 'raster',
     }));
-    const wrapper = mount(<ConnectedMap {...props} />);
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref}/></Provider>);
 
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const sdk_map = ref.current;
 
     setTimeout(() => {
       const source = sdk_map.map.getLayers().item(0).getSource();
@@ -1096,8 +1083,9 @@ describe('Map component', () => {
       source: 'foo',
     }));
 
-    const wrapper = mount(<ConnectedMap store={store} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref}/></Provider>);
+    const sdk_map = ref.current;
     window.setTimeout(() => {
       let source = sdk_map.sources['foo'];
       expect(source.getParams()['SALT']).toBeUndefined();
@@ -1119,8 +1107,9 @@ describe('Map component', () => {
       map: MapReducer,
     }));
 
-    const wrapper = mount(<ConnectedMap store={store} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref}/></Provider>);
+    const sdk_map = ref.current;
 
     store.dispatch(MapActions.setBearing(20));
     expect(store.getState().map.bearing).toEqual(20);
@@ -1138,12 +1127,10 @@ describe('Map component', () => {
       map: MapReducer,
       print: PrintReducer,
     }));
-    const props = {
-      store,
-    };
 
-    const wrapper = mount(<ConnectedMap {...props} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref} /></Provider>);
+    const sdk_map = ref.current;
     spyOn(sdk_map.map, 'renderSync');
     store.dispatch(PrintActions.exportMapImage());
 
@@ -1163,15 +1150,16 @@ describe('Map component', () => {
 
     // create a props dictionary which
     //  can include a spy.
+    const ref = React.createRef();
     const props = {
-      store,
       onClick,
       includeFeaturesOnClick: true,
+      ref,
     };
     spyOn(props, 'onClick');
 
-    const wrapper = mount(<ConnectedMap {...props} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    mount(<Provider store={store}><ConnectedMap {...props} /></Provider>);
+    const sdk_map = ref.current;
     spyOn(sdk_map.map, 'forEachFeatureAtPixel');
     sdk_map.map.dispatchEvent({
       type: 'postcompose',
@@ -1199,14 +1187,14 @@ describe('Map component', () => {
       map: MapReducer,
     }));
 
+    const ref = React.createRef();
     const props = {
-      store,
+      ref,
       initialPopups: [(<SdkPopup coordinate={[0, 0]}><div>foo</div></SdkPopup>)],
     };
 
-
-    const wrapper = mount(<ConnectedMap {...props} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    mount(<Provider store={store}><ConnectedMap {...props} /></Provider>);
+    const sdk_map = ref.current;
 
     expect(sdk_map.map.getOverlays().getLength()).toEqual(0);
 
@@ -1222,12 +1210,9 @@ describe('Map component', () => {
       map: MapReducer,
     }));
 
-    const props = {
-      store,
-    };
-
-    const wrapper = mount(<ConnectedMap {...props} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref} /></Provider>);
+    const sdk_map = ref.current;
 
     expect(sdk_map.map.getOverlays().getLength()).toEqual(0);
 
@@ -1242,12 +1227,9 @@ describe('Map component', () => {
       map: MapReducer,
     }));
 
-    const props = {
-      store,
-    };
-
-    const wrapper = mount(<ConnectedMap {...props} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref} /></Provider>);
+    const sdk_map = ref.current;
 
     sdk_map.addPopup(<SdkPopup coordinate={[0, 0]}><div>foo</div></SdkPopup>, false);
     spyOn(sdk_map, 'updatePopups');
@@ -1261,12 +1243,9 @@ describe('Map component', () => {
       map: MapReducer,
     }));
 
-    const props = {
-      store,
-    };
-
-    const wrapper = mount(<ConnectedMap {...props} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref} /></Provider>);
+    const sdk_map = ref.current;
 
     sdk_map.addPopup(<SdkPopup coordinate={[0, 0]}><div>foo</div></SdkPopup>, false);
     const id = sdk_map.map.getOverlays().item(0).get('popupId');
@@ -1329,8 +1308,9 @@ describe('Map component', () => {
       map: MapReducer,
     }));
 
+    const ref = React.createRef();
     const props = {
-      store,
+      ref,
       includeFeaturesOnClick: true,
     };
 
@@ -1349,8 +1329,8 @@ describe('Map component', () => {
       source: 'osm',
     }));
 
-    const wrapper = mount(<ConnectedMap {...props} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    mount(<Provider store={store}><ConnectedMap {...props} /></Provider>);
+    const sdk_map = ref.current;
 
     spyOn(sdk_map, 'handleAsyncGetFeatureInfo');
 
@@ -1368,13 +1348,14 @@ describe('Map component', () => {
       map: MapReducer,
     }));
 
+    const ref = React.createRef();
     const props = {
-      store,
       includeFeaturesOnClick: true,
+      ref,
     };
 
-    const wrapper = mount(<ConnectedMap {...props} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    mount(<Provider store={store}><ConnectedMap {...props} /></Provider>);
+    const sdk_map = ref.current;
     let promises = [];
     const layer = {
       id: 'foo',
@@ -1422,13 +1403,14 @@ describe('Map component', () => {
 
     store.dispatch(MapActions.setView([-45, -45], 11));
 
+    const ref = React.createRef();
     const props = {
-      store,
+      ref,
       includeFeaturesOnClick: true,
     };
 
-    const wrapper = mount(<ConnectedMap {...props} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    mount(<Provider store={store}><ConnectedMap {...props} /></Provider>);
+    const sdk_map = ref.current;
     sdk_map.map.getSize = function() {
       return [300, 300];
     };
@@ -1467,13 +1449,14 @@ describe('Map component', () => {
 
     store.dispatch(MapActions.setView([-45, -45], 11));
 
+    const ref = React.createRef();
     const props = {
-      store,
+      ref,
       includeFeaturesOnClick: true,
     };
 
-    const wrapper = mount(<ConnectedMap {...props} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    mount(<Provider store={store}><ConnectedMap {...props} /></Provider>);
+    const sdk_map = ref.current;
     sdk_map.map.getSize = function() {
       return [300, 300];
     };

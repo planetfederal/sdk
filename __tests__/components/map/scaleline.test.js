@@ -5,6 +5,7 @@ import {mount, configure} from 'enzyme';
 import  Adapter from 'enzyme-adapter-react-16';
 
 import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
 
 import MapReducer from '../../../src/reducers/map';
 import MapInfoReducer from '../../../src/reducers/mapinfo';
@@ -28,98 +29,98 @@ describe('Scaleline tests', () => {
 
   it('should allow for custom className', () => {
     store.dispatch(MapInfoActions.setResolution(1000));
-    const wrapper = mount(<ConnectedScaleLine className='foo' store={store} />);
+    const wrapper = mount(<Provider store={store}><ConnectedScaleLine className='foo' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('create the correct scaleline', () => {
     store.dispatch(MapInfoActions.setResolution(1000));
-    const wrapper = mount(<ConnectedScaleLine store={store} />);
+    const wrapper = mount(<Provider store={store}><ConnectedScaleLine /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('creates the meter suffix', () => {
     store.dispatch(MapInfoActions.setResolution(2.388657133911758));
-    const wrapper = mount(<ConnectedScaleLine store={store} />);
+    const wrapper = mount(<Provider store={store}><ConnectedScaleLine /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('creates the millimeter suffix', () => {
     store.dispatch(MapInfoActions.setResolution(0.009330691929342804));
-    const wrapper = mount(<ConnectedScaleLine store={store} />);
+    const wrapper = mount(<Provider store={store}><ConnectedScaleLine /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('creates the micrometer suffix', () => {
     store.dispatch(MapInfoActions.setResolution(0.000009330691929342804));
-    const wrapper = mount(<ConnectedScaleLine store={store} />);
+    const wrapper = mount(<Provider store={store}><ConnectedScaleLine /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('create the correct scaleline in EPSG:4326', () => {
     store.dispatch(MapInfoActions.setProjection('EPSG:4326'));
     store.dispatch(MapInfoActions.setResolution(1000));
-    const wrapper = mount(<ConnectedScaleLine units='degrees' store={store} />);
+    const wrapper = mount(<Provider store={store}><ConnectedScaleLine units='degrees' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('create the correct scaleline in degrees', () => {
     store.dispatch(MapInfoActions.setResolution(19567.87924100512));
-    const wrapper = mount(<ConnectedScaleLine units='degrees' store={store} />);
+    const wrapper = mount(<Provider store={store}><ConnectedScaleLine units='degrees' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('create the correct scaleline in degrees (minutes)', () => {
     store.dispatch(MapInfoActions.setResolution(300));
-    const wrapper = mount(<ConnectedScaleLine units='degrees' store={store} />);
+    const wrapper = mount(<Provider store={store}><ConnectedScaleLine units='degrees' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('create the correct scaleline in degrees (seconds)', () => {
     store.dispatch(MapInfoActions.setResolution(1));
-    const wrapper = mount(<ConnectedScaleLine units='degrees' store={store} />);
+    const wrapper = mount(<Provider store={store}><ConnectedScaleLine units='degrees' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('create the correct scaleline in imperial', () => {
     store.dispatch(MapInfoActions.setResolution(1000));
-    const wrapper = mount(<ConnectedScaleLine units='imperial' store={store} />);
+    const wrapper = mount(<Provider store={store}><ConnectedScaleLine units='imperial' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('create the correct scaleline in imperial (ft)', () => {
     store.dispatch(MapInfoActions.setResolution(1));
-    const wrapper = mount(<ConnectedScaleLine units='imperial' store={store} />);
+    const wrapper = mount(<Provider store={store}><ConnectedScaleLine units='imperial' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('create the correct scaleline in imperial (in)', () => {
     store.dispatch(MapInfoActions.setResolution(0.001));
-    const wrapper = mount(<ConnectedScaleLine units='imperial' store={store} />);
+    const wrapper = mount(<Provider store={store}><ConnectedScaleLine units='imperial' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('create the correct scaleline in nautical', () => {
     store.dispatch(MapInfoActions.setResolution(1000));
-    const wrapper = mount(<ConnectedScaleLine units='nautical' store={store} />);
+    const wrapper = mount(<Provider store={store}><ConnectedScaleLine units='nautical' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('create the correct scaleline in us', () => {
     store.dispatch(MapInfoActions.setResolution(1000));
-    const wrapper = mount(<ConnectedScaleLine units='us' store={store} />);
+    const wrapper = mount(<Provider store={store}><ConnectedScaleLine units='us' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('create the correct scaleline in us (ft)', () => {
     store.dispatch(MapInfoActions.setResolution(1));
-    const wrapper = mount(<ConnectedScaleLine units='us' store={store} />);
+    const wrapper = mount(<Provider store={store}><ConnectedScaleLine units='us' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('create the correct scaleline in us (in)', () => {
     store.dispatch(MapInfoActions.setResolution(0.001));
-    const wrapper = mount(<ConnectedScaleLine units='us' store={store} />);
+    const wrapper = mount(<Provider store={store}><ConnectedScaleLine units='us' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 

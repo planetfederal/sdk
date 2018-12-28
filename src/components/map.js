@@ -2004,5 +2004,4 @@ export function getOLStyleFunctionFromMapboxStyle(styles) {
   }));
 }
 
-// Ensure that withRef is set to true so getWrappedInstance will return the Map.
-export default connect(mapStateToProps, mapDispatchToProps, undefined, {withRef: true})(Map);
+export default connect(mapStateToProps, mapDispatchToProps, undefined, {forwardRef: true})(Map);

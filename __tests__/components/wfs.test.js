@@ -8,6 +8,7 @@ import nock from 'nock';
 import  Adapter from 'enzyme-adapter-react-16';
 
 import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
 
 import WfsReducer from '@boundlessgeo/sdk/reducers/wfs';
 import WfsController from '@boundlessgeo/sdk/components/wfs';
@@ -53,7 +54,7 @@ describe('WfsController component.', () => {
   });
 
   it('creates the controller', () => {
-    mount(<WfsController store={store} />);
+    mount(<Provider store={store}><WfsController /></Provider>);
   });
 
   it('handles exception reports', (done) => {
@@ -63,7 +64,6 @@ describe('WfsController component.', () => {
     let message;
     let start = false;
     const props = {
-      store,
       onStartTransaction: () => {
         start = true;
       },
@@ -72,7 +72,7 @@ describe('WfsController component.', () => {
       },
     };
 
-    mount(<WfsController {...props} />);
+    mount(<Provider store={store}><WfsController {...props} /></Provider>);
 
     store.dispatch(actions.addSource('exception-source', {
       onlineResource: 'http://exception.com/wfs',
@@ -104,13 +104,12 @@ describe('WfsController component.', () => {
     const response = '<wfs:TransactionResponse xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wfs="http://www.opengis.net/wfs" xmlns:gml="http://www.opengis.net/gml" xmlns:ogc="http://www.opengis.net/ogc" xmlns:ows="http://www.opengis.net/ows" xmlns:sdk="http://example.com/sdk" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1.0" xsi:schemaLocation="http://www.opengis.net/wfs http://localhost:3000/geoserver/schemas/wfs/1.1.0/wfs.xsd"><wfs:TransactionSummary><wfs:totalInserted>0</wfs:totalInserted><wfs:totalUpdated>1</wfs:totalUpdated><wfs:totalDeleted>0</wfs:totalDeleted></wfs:TransactionSummary><wfs:TransactionResults/><wfs:InsertResults><wfs:Feature><ogc:FeatureId fid="none"/></wfs:Feature></wfs:InsertResults></wfs:TransactionResponse>';
 
     const props = {
-      store,
       onRequestError: () => {
       },
     };
     spyOn(props, 'onRequestError');
 
-    mount(<WfsController {...props} />);
+    mount(<Provider store={store}><WfsController {...props} /></Provider>);
 
     store.dispatch(actions.addSource('test', {
       onlineResource: 'http://example.com/wfs',

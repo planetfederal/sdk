@@ -5,6 +5,7 @@ import {mount, configure} from 'enzyme';
 import  Adapter from 'enzyme-adapter-react-16';
 
 import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
 
 import MapReducer from '../../../src/reducers/map';
 import MapInfoReducer from '../../../src/reducers/mapinfo';
@@ -26,12 +27,12 @@ describe('Zoom control tests', () => {
 
   it('should correctly report the lat lng', () => {
     store.dispatch(MapInfoActions.setMousePosition({lng: 45, lat: 40}));
-    const wrapper = mount(<SdkMousePosition store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkMousePosition /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('should allow for custom className', () => {
-    const wrapper = mount(<SdkMousePosition className='foo' store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkMousePosition className='foo' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 });

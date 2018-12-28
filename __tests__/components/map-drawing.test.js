@@ -13,6 +13,7 @@ import {mount, configure} from 'enzyme';
 import  Adapter from 'enzyme-adapter-react-16';
 
 import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
 
 import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
@@ -39,7 +40,7 @@ describe('Map with drawing reducer', () => {
       map: MapReducer,
       drawing: DrawingReducer,
     }));
-    const wrapper = mount(<SdkMap store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkMap /></Provider>);
     expect(wrapper.find('.sdk-map').length).toBe(1);
   });
 });
@@ -48,7 +49,7 @@ describe('Map with drawing reducer', () => {
 // require that the canvas element be installed to run these tests.
 describe('Map component with drawing', () => {
   let store = null;
-  let wrapper = null;
+  let ref = null;
 
   beforeEach(() => {
     store = createStore(combineReducers({
@@ -80,11 +81,12 @@ describe('Map component with drawing', () => {
       },
     }));
 
-    wrapper = mount(<SdkMap store={store} includeFeaturesOnClick={true} />);
+    ref = React.createRef();
+    mount(<Provider store={store}><SdkMap ref={ref} includeFeaturesOnClick={true} /></Provider>);
   });
 
   it('turns on a drawing tool', () => {
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const sdk_map = ref.current;
     const ol_map = sdk_map.map;
     const n_interactions = ol_map.getInteractions().getLength();
 
@@ -117,7 +119,7 @@ describe('Map component with drawing', () => {
       interaction: INTERACTIONS.point,
       sourceName: 'test',
     });
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const sdk_map = ref.current;
     spyOn(sdk_map.map, 'forEachFeatureAtPixel');
     sdk_map.map.dispatchEvent({
       type: 'postcompose',
@@ -138,7 +140,7 @@ describe('Map component with drawing', () => {
   });
 
   it('turns on a drawing tool for box', () => {
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const sdk_map = ref.current;
     const ol_map = sdk_map.map;
     const n_interactions = ol_map.getInteractions().getLength();
 
@@ -176,7 +178,7 @@ describe('Map component with drawing', () => {
       sourceName: 'test',
     });
 
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const sdk_map = ref.current;
     const ol_map = sdk_map.map;
     const n_interactions = ol_map.getInteractions().getLength();
 
@@ -191,7 +193,7 @@ describe('Map component with drawing', () => {
   });
 
   it('turns on feature modification', () => {
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const sdk_map = ref.current;
     const ol_map = sdk_map.map;
 
     const interactions = ol_map.getInteractions();
@@ -229,7 +231,7 @@ describe('Map component with drawing', () => {
   });
 
   it('turns on feature modification for a given feature', () => {
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const sdk_map = ref.current;
     const ol_map = sdk_map.map;
 
     const interactions = ol_map.getInteractions();
@@ -258,7 +260,7 @@ describe('Map component with drawing', () => {
   });
 
   it('turns on select', () => {
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const sdk_map = ref.current;
     const ol_map = sdk_map.map;
 
     const n_interactions = ol_map.getInteractions().getLength();
@@ -298,10 +300,11 @@ describe('Map component with drawing', () => {
   it('handles deselect', () => {
     const props = {};
     props.onFeatureDeselected = () => {};
-    props.store = store;
+    let mapRef = React.createRef();
+    props.ref = mapRef;
     spyOn(props, 'onFeatureDeselected');
-    wrapper = mount(<SdkMap {...props} />);
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    mount(<Provider store={store}><SdkMap {...props} /></Provider>);
+    const sdk_map = mapRef.current;
     const ol_map = sdk_map.map;
 
     // dummy feature
@@ -330,7 +333,7 @@ describe('Map component with drawing', () => {
   });
 
   it('measures a point', () => {
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const sdk_map = ref.current;
     const ol_map = sdk_map.map;
 
     // set the point measure
@@ -361,7 +364,7 @@ describe('Map component with drawing', () => {
   });
 
   it('measures a line', () => {
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const sdk_map = ref.current;
     const ol_map = sdk_map.map;
 
     // set the line measure
@@ -397,7 +400,7 @@ describe('Map component with drawing', () => {
   });
 
   it('measures a polygon, and finalizes it', () => {
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const sdk_map = ref.current;
     const ol_map = sdk_map.map;
 
     // set the polygon measure
@@ -442,7 +445,7 @@ describe('Map component with drawing', () => {
   });
 
   it('measures a polygon, and finishes the geometry', () => {
-    const sdk_map = wrapper.instance().getWrappedInstance();
+    const sdk_map = ref.current;
     const ol_map = sdk_map.map;
 
     // set the polygon measure
