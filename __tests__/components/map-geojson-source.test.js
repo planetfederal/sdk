@@ -6,6 +6,7 @@
 
 import React from 'react';
 import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
 import {mount, configure} from 'enzyme';
 import nock from 'nock';
 import  Adapter from 'enzyme-adapter-react-16';
@@ -34,8 +35,9 @@ describe('tests for the geojson-type map sources', () => {
 
     baseUrl = 'http://example.com/base';
     store.dispatch(MapboxActions.configure({baseUrl}));
-    const wrapper = mount(<SdkMap store={store} />);
-    map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><SdkMap ref={ref} /></Provider>);
+    map = ref.current;
   });
 
   afterEach(() => {

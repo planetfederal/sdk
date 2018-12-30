@@ -5,6 +5,7 @@ import {shallow, mount, configure} from 'enzyme';
 import  Adapter from 'enzyme-adapter-react-16';
 
 import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
 import MapReducer from '@boundlessgeo/sdk/reducers/map';
 import {setView} from '@boundlessgeo/sdk/actions/map';
 
@@ -74,7 +75,7 @@ describe('change the connected HashHistory', () => {
 
   it('sets the view when the hash changes', () => {
     // mount a connected HashHistory component.
-    mount(<SdkHashHistory store={store} />);
+    mount(<Provider store={store}><SdkHashHistory /></Provider>);
 
     // simulate a hash change event.
     window.location.hash = '#x=200&y=200&z=22&r=0';
@@ -87,7 +88,7 @@ describe('change the connected HashHistory', () => {
 
   it('changes the hash when the view changes', () => {
     // mount a connected HashHistory component.
-    mount(<SdkHashHistory store={store} />);
+    mount(<Provider store={store}><SdkHashHistory /></Provider>);
     store.dispatch(setView([100, 100], 10));
     expect(window.location.hash).toBe('#x=100.00000&y=100.00000&z=10&r=0');
   });

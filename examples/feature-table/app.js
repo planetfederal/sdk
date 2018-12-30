@@ -96,16 +96,15 @@ function main() {
     </SdkMap>
   </Provider>, document.getElementById('map'));
 
-  // place the table on the page.
-  // ReactDOM.render(<SdkTable store={store} />, document.getElementById('table'));
-
   // add some buttons to demo some actions.
   ReactDOM.render((
     <div>
       <h3>Try it out</h3>
       <button className='sdk-btn' onClick={runFetchGeoJSON}>Fetch Data</button>
       <div>
-        <SdkTable store={store} />
+        <Provider store={store}>
+          <SdkTable />
+        </Provider>
       </div>
     </div>
   ), document.getElementById('controls'));

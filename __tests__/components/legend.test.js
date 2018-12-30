@@ -6,6 +6,7 @@ import nock from 'nock';
 import Adapter from 'enzyme-adapter-react-16';
 
 import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
 import MapReducer from '@boundlessgeo/sdk/reducers/map';
 
 import SdkLegend, {Legend} from '@boundlessgeo/sdk/components/legend';
@@ -155,17 +156,17 @@ describe('test the Legend component', () => {
   });
 
   it('should render the legend without error', () => {
-    mount(<SdkLegend layerId='wms-test' store={store} />);
+    mount(<Provider store={store}><SdkLegend layerId='wms-test' /></Provider>);
   });
 
   it('should render empty text', () => {
-    const wrapper = mount(<Legend emptyLegendMessage='Empty Layer' layerId='wms-test' store={store} />);
+    const wrapper = mount(<Provider store={store}><Legend emptyLegendMessage='Empty Layer' layerId='wms-test' /></Provider>);
     wrapper.instance().setState({empty: true});
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('should render a wms legend', () => {
-    const wrapper = mount(<SdkLegend layerId='wms-test' store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkLegend layerId='wms-test' /></Provider>);
 
     // check for all the layers
     ['x', 'y', 'z'].forEach((layer) => {
@@ -178,22 +179,22 @@ describe('test the Legend component', () => {
   });
 
   it('should render an html legend', () => {
-    const wrapper = mount(<SdkLegend layerId='html-test' store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkLegend layerId='html-test' /></Provider>);
     expect(wrapper.html().indexOf(TEST_HTML)).toBeGreaterThan(-1);
   });
 
   it('should render an image legend', () => {
-    const wrapper = mount(<SdkLegend layerId='image-test' store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkLegend layerId='image-test' /></Provider>);
     expect(wrapper.html().indexOf(TEST_IMAGE)).toBeGreaterThan(-1);
   });
 
   it('should render an image legend if unknown source type', () => {
-    const wrapper = mount(<SdkLegend layerId='unknown-layer' store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkLegend layerId='unknown-layer' /></Provider>);
     expect(wrapper.html().indexOf(TEST_IMAGE)).toBeGreaterThan(-1);
   });
 
   it('should return empty element if no layer source is present', () => {
-    const wrapper = mount(<SdkLegend layerId='null-layer-source' store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkLegend layerId='null-layer-source' /></Provider>);
     expect(wrapper.html()).toBe('<div class="sdk-legend"></div>');
   });
 
@@ -202,7 +203,7 @@ describe('test the Legend component', () => {
       .get(TEST_HREF)
       .reply(200, TEST_HTML);
 
-    const wrapper = mount(<SdkLegend layerId='href-test' store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkLegend layerId='href-test' /></Provider>);
 
     // this gives the nock-fetch a short amount of time
     // to render the HTML content.
@@ -213,51 +214,51 @@ describe('test the Legend component', () => {
   });
 
   it('should test the null state', () => {
-    mount(<SdkLegend layerId='null-test' store={store} />);
+    mount(<Provider store={store}><SdkLegend layerId='null-test' /></Provider>);
   });
 
   it('should render an empty legend when id does not exist', () => {
-    const wrapper = mount(<SdkLegend layerId='does-not-exist' store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkLegend layerId='does-not-exist' /></Provider>);
     expect(wrapper.find('.sdk-legend').length).toBe(1);
   });
 
   it('should fallback from raster to vector', () => {
-    const wrapper = mount(<SdkLegend layerId='osm' store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkLegend layerId='osm' /></Provider>);
     expect(wrapper.html().indexOf(TEST_HTML)).toBeGreaterThan(-1);
   });
 
   it('should return an empty legend for an invalid legend type', () => {
-    const wrapper = mount(<SdkLegend layerId='bad-type-test' store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkLegend layerId='bad-type-test' /></Provider>);
     expect(wrapper.find('.sdk-legend').length).toBe(1);
   });
 
   it('should allow for custom className', () => {
-    const wrapper = mount(<SdkLegend layerId='bad-type-test' className='foo' store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkLegend layerId='bad-type-test' className='foo' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('should allow for vector (point) legend', () => {
-    const wrapper = mount(<SdkLegend layerId='vector-point-test' store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkLegend layerId='vector-point-test' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('should allow for vector (symbol) legend', () => {
-    const wrapper = mount(<SdkLegend layerId='vector-symbol-test' store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkLegend layerId='vector-symbol-test' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('should allow for vector (line) legend', () => {
-    const wrapper = mount(<SdkLegend layerId='vector-line-test' store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkLegend layerId='vector-line-test' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('should allow for vector (polygon) legend', () => {
-    const wrapper = mount(<SdkLegend layerId='vector-polygon-test' store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkLegend layerId='vector-polygon-test' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('should allow for custom size', () => {
-    const wrapper = mount(<SdkLegend size={[100, 100]} layerId='vector-polygon-test' store={store} />);
+    const wrapper = mount(<Provider store={store}><SdkLegend size={[100, 100]} layerId='vector-polygon-test' /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
 

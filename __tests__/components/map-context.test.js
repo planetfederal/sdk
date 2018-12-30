@@ -9,6 +9,7 @@ import TileWMSSource from 'ol/source/TileWMS';
 import XYZSource from 'ol/source/XYZ';
 
 import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux';
 
 import ConnectedMap from '@boundlessgeo/sdk/components/map';
 import MapReducer from '@boundlessgeo/sdk/reducers/map';
@@ -27,8 +28,9 @@ describe('Map component context documents', () => {
 
     sagaMiddleware.run(ContextSagas.handleContext);
 
-    const wrapper = mount(<ConnectedMap store={store} />);
-    const map = wrapper.instance().getWrappedInstance();
+    const ref = React.createRef();
+    mount(<Provider store={store}><ConnectedMap ref={ref} /></Provider>);
+    const map = ref.current;
 
     const wmsJson = {
       version: 8,

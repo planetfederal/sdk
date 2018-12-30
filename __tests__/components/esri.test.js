@@ -33,7 +33,7 @@ describe('EsriController component.', () => {
   });
 
   it('creates the controller', () => {
-    mount(<EsriController store={store} />);
+    mount(<Provider store={store}><EsriController /></Provider>);
   });
 
   it('fetches data', (done) => {

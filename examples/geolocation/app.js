@@ -52,7 +52,9 @@ function main() {
   ReactDOM.render((
     <div>
       <h3>Try it out</h3>
-      <TrackPosition store={store} />
+      <Provider store={store}>
+        <TrackPosition />
+      </Provider>
     </div>
   ), document.getElementById('controls'));
 }

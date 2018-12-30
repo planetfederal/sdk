@@ -60,7 +60,9 @@ function main() {
   ReactDOM.render((
     <div>
       <h3>Try it out</h3>
-      <ContextSelector store={store} />
+      <Provider store={store}>
+        <ContextSelector />
+      </Provider>
       <h1>Save a Map</h1>
       <h2>To <a href='https://www.mapbox.com/mapbox-gl-js/style-spec/'>Mapbox Style Specification</a></h2>
       <button className='sdk-btn' onClick={exportMapSpec}>Save Map</button>
