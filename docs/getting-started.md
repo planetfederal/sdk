@@ -30,7 +30,7 @@ cd sdk-starter
 SDK-based apps do require additional dependencies. These include Redux for managing state.
 
 ```
-yarn add redux react-redux@^5.1.1 ol ol-mapbox-style
+yarn add redux react-redux ol ol-mapbox-style
 ```
 
 ### Add sass support
@@ -72,7 +72,7 @@ add the following imports:
 
 ```javascript
 import { createStore, combineReducers } from 'redux';
-
+import { Provider } from 'react-redux';
 import SdkMap from '@boundlessgeo/sdk/components/map';
 import SdkMapReducer from '@boundlessgeo/sdk/reducers/map';
 import * as SdkMapActions from '@boundlessgeo/sdk/actions/map';
@@ -117,7 +117,9 @@ Remove the header part, and replace it with an SDK map:
   render() {
     return (
       <div className="App">
-        <SdkMap store={store} />
+        <Provider store={store}>
+          <SdkMap />
+        </Provider>
       </div>
     );
   }
