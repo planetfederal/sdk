@@ -136,13 +136,15 @@ function main() {
       <p>
         <b>Click on a Census Tract to change its color.</b><br/>
       </p>
-      <SdkHashHistory store={store} />
+      <Provider store={store}>
+        <SdkHashHistory />
 
-      <EditPanel onChange={ updateFeature } colors={colors} ref={ (pnl) => {
-        edit_panel = pnl;
-      }} />
+        <EditPanel onChange={ updateFeature } colors={colors} ref={ (pnl) => {
+          edit_panel = pnl;
+        }} />
 
-      <WfsController store={store} onRequestError={ onError } onFinishTransaction={ onFinish }/>
+        <WfsController onRequestError={ onError } onFinishTransaction={ onFinish }/>
+      </Provider>
     </div>
   ), document.getElementById('controls'));
 }

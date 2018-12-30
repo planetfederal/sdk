@@ -198,7 +198,9 @@ function main() {
       <h3>Try it out</h3>
       <h4>Legend</h4>
       <div className='legend-label'>Random points</div>
-      <SdkLegend store={store} layerId='random-points' />
+      <Provider store={store}>
+        <SdkLegend layerId='random-points' />
+      </Provider>
       <div>
         <b>Choose a color for the points on the map:</b> <br />
         <div>{color_controls}</div>

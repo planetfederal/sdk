@@ -284,7 +284,9 @@ function main() {
         </select>
       </div>
       <div className='control-panel'>
-        <MeasureTable store={store} />
+        <Provider store={store}>
+          <MeasureTable />
+        </Provider>
       </div>
       <div className='control-panel'>
         <h4>Messages</h4>

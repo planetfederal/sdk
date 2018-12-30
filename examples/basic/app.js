@@ -136,7 +136,9 @@ function main() {
       <button className='sdk-btn blue' onClick={removeRandomPoints}>Remove random points</button>
 
       {/*SdkHashHistory provides a log of coordinates in the url hash*/}
-      <SdkHashHistory store={store} />
+      <Provider store={store}>
+        <SdkHashHistory />
+      </Provider>
 
     </div>
   ), document.getElementById('controls'));

@@ -122,12 +122,13 @@ function main() {
   </Provider>, document.getElementById('map'));
 
   // place the bookmark control and pass in the features and zoom function
-  ReactDOM.render(<BookmarkComponent className='bookmark-item' store={store}/>,
-    document.getElementById('bookmark'));
+  ReactDOM.render(<Provider store={store}>
+    <BookmarkComponent className='bookmark-item' />
+  </Provider>, document.getElementById('bookmark'));
 
   // place the bookmark control and pass in the features and zoom function
-  ReactDOM.render(<AddBookmarkComponent store={store}/>,
-    document.getElementById('addForm'));
+  ReactDOM.render(<Provider store={store}>
+    <AddBookmarkComponent /></Provider>, document.getElementById('addForm'));
 
   // place the move slide compoent, same slide used in bookmark component
   ReactDOM.render(
@@ -144,7 +145,9 @@ function main() {
       <button className='sdk-btn' onClick={() => {
         deleteBookmark();
       } }  >Delete Bookmark</button>
-      <MoveButtonComponent className='sdk-btn' store={store}/>
+      <Provider store={store}>
+        <MoveButtonComponent className='sdk-btn' />
+      </Provider>
     </div>),
     document.getElementById('controls'));
 }

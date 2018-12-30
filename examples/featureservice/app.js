@@ -87,8 +87,10 @@ function main() {
 
   ReactDOM.render((
     <div>
-      <SdkHashHistory store={store} />
-      <EsriController store={store} />
+      <Provider store={store}>
+        <SdkHashHistory />
+        <EsriController />
+      </Provider>
     </div>
   ), document.getElementById('controls'));
 }
