@@ -1,0 +1,80 @@
+/* Demo how to over ride the default color of the buttons */
+
+button.sdk-btn.blue {
+    background-color: #29728d;
+}
+
+#controls form {
+  font-size: .85rem;
+}
+
+.mapName {
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  font-size: 1rem;
+  border-radius: .25rem;
+}
+.filter-box {
+  padding: 2rem;
+  background: #fff;
+  color: #444;
+}
+
+.interior {
+  display: table-cell;
+  vertical-align: middle;
+  z-index: 9999;
+  width: 400px;
+}
+.interior .buttons button.sdk-btn {
+  padding: .25rem;
+}
+.label, .value {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.label {
+  width: 80px;;
+}
+.value {
+  width: 250px;
+}
+/* form specific formatting */
+ .form-group {
+   display: flex;
+   flex-direction: row;
+ }
+
+ .form-group label {
+   flex: none;
+   display: block;
+   width: 95px;
+  }
+ .form-group label.right-inline {
+   text-align: right;
+   padding-right: 4px;
+   padding-left: 5px;
+   width: auto;
+ }
+
+ .form-group .input-control {
+   flex: 1 1 auto;
+   display: block;
+   margin-bottom: 4px;
+   margin-top: -4px;
+ }
+
+ .button-control{
+   margin: 5px;
+ }
+ .filter-list{
+   list-style-type: none;
+ }
