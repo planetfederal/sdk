@@ -1,12 +1,13 @@
 {
   "type": "FeatureCollection",
-  "crs": {
+  "crs": { 
     "type": "name",
-    "properties": {
-      "name": "EPSG:3857"
+    "properties": 
+    { 
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84" 
     }
   },
-  "features": [
+   "features": [
     {
       "type": "Feature",
       "geometry": {
@@ -18,21 +19,21 @@
       "type": "Feature",
       "geometry": {
         "type": "LineString",
-        "coordinates": [[4e6, -2e6], [8e6, 2e6]]
+        "coordinates": [[35, -17.6], [71.8, 17.6]]
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "LineString",
-        "coordinates": [[4e6, 2e6], [8e6, -2e6]]
+        "coordinates": [[35, 17.6], [71.8, -17.6]]
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Polygon",
-        "coordinates": [[[-5e6, -1e6], [-4e6, 1e6], [-3e6, -1e6], [-5e6, -1e6]]]
+        "coordinates": [[[-45, -9], [-36, 9], [-27, -9], [-45, -9]]]
       }
     },
     {
@@ -40,10 +41,10 @@
       "geometry": {
         "type": "MultiLineString",
         "coordinates": [
-          [[-1e6, -7.5e5], [-1e6, 7.5e5]],
-          [[1e6, -7.5e5], [1e6, 7.5e5]],
-          [[-7.5e5, -1e6], [7.5e5, -1e6]],
-          [[-7.5e5, 1e6], [7.5e5, 1e6]]
+          [[-9, -55.7], [-9, 55.7]],
+          [[9, -55.7], [9, 55.7]],
+          [[-67, -9], [67, -9]],
+          [[-67, 9], [67, 9]]
         ]
       }
     },
@@ -52,9 +53,9 @@
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
-          [[[-5e6, 6e6], [-5e6, 8e6], [-3e6, 8e6], [-3e6, 6e6], [-5e6, 6e6]]],
-          [[[-2e6, 6e6], [-2e6, 8e6], [0, 8e6], [0, 6e6], [-2e6, 6e6]]],
-          [[[1e6, 6e6], [1e6, 8e6], [3e6, 8e6], [3e6, 6e6], [1e6, 6e6]]]
+          [[[-45, 47], [-45, 58], [-27, 58], [-27, 47], [-45, 47]]],
+          [[[-18, 47], [-18, 58], [0, 58], [0, 47], [-18, 47]]],
+          [[[9, 47], [9, 58], [27, 58], [27, 47], [9, 47]]]
         ]
       }
     },
@@ -65,15 +66,15 @@
         "geometries": [
           {
             "type": "LineString",
-            "coordinates": [[-5e6, -5e6], [0, -5e6]]
+            "coordinates": [[-45, -41], [0, -41]]
           },
           {
             "type": "Point",
-            "coordinates": [4e6, -5e6]
+            "coordinates": [35, -41]
           },
           {
             "type": "Polygon",
-            "coordinates": [[[1e6, -6e6], [2e6, -4e6], [3e6, -6e6], [1e6, -6e6]]]
+            "coordinates": [[[9, -47], [17, -33.7], [27, -47], [9, -47]]]
           }
         ]
       }
