@@ -22,6 +22,13 @@ import SdkLayerListItem from '@boundlessgeo/sdk/components/layer-list-item';
 
 import {Provider} from 'react-redux';
 
+// Colors from http://colorbrewer2.org
+const colors = [
+  ['#ffffe5', '#fff7bc', '#fee391', '#fec44f', '#fe9929', '#ec7014', '#cc4c02', '#993404', '#662506'],
+  ['#ffffd9', '#edf8b1', '#c7e9b4', '#7fcdbb', '#41b6c4', '#1d91c0', '#225ea8', '#253494', '#081d58'],
+  ['#ffffe5', '#f7fcb9', '#d9f0a3', '#addd8e', '#78c679', '#41ab5d', '#238443', '#006837', '#004529']
+];
+
 /* eslint-disable no-underscore-dangle */
 const store = createStore(combineReducers({
   map: SdkMapReducer,
@@ -37,22 +44,22 @@ class LayerListItem extends SdkLayerListItem {
         <button className='sdk-btn' onClick={() => {
           this.moveLayerUp();
         }}>
-          { this.props.labels.up }
+          {this.props.labels.up}
         </button>
         <button className='sdk-btn' onClick={() => {
           this.moveLayerDown();
         }}>
-          { this.props.labels.down }
+          {this.props.labels.down}
         </button>
         <button className='sdk-btn' onClick={() => {
           this.removeLayer();
         }}>
-          { this.props.labels.remove }
+          {this.props.labels.remove}
         </button>
       </span>
     );
 
-    return  this.props.connectDragSource(this.props.connectDropTarget((
+    return this.props.connectDragSource(this.props.connectDropTarget((
       <li className='layer'>
         <span className='checkbox'>{checkbox}</span>
         <span className='name'>{layer.id}</span>
@@ -70,16 +77,21 @@ LayerListItem.defaultProps = {
   },
 };
 
+// Set up drag and drop
 LayerListItem = DropTarget(types, layerListItemTarget, collectDrop)(DragSource(types, layerListItemSource, collect)(LayerListItem));
 
 function main() {
   // Start with a reasonable global view of hte map.
   store.dispatch(mapActions.setView([-93, 45], 2));
 
+  // Setup 2 groups - base and loader
   store.dispatch(mapActions.updateMetadata({
     'mapbox:groups': {
       base: {
         name: 'Base Maps',
+      },
+      loader: {
+        name: 'Loader',
       },
     },
   }));
@@ -111,52 +123,72 @@ function main() {
     }
   }));
 
-  // add carto source
-  store.dispatch(mapActions.addSource('cartolight', {
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+  // ESRI Layer
+  const baseUrl = 'https://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Specialty/ESRI_StateCityHighway_USA/MapServer/';
+
+  // add the ArcGIS rest source
+  store.dispatch(mapActions.addSource('esri', {
     type: 'raster',
     tileSize: 256,
+    crossOrigin: null, /* service does not support CORS */
     tiles: [
-      'http://s.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+      `${baseUrl}export?F=image&FORMAT=PNG32&TRANSPARENT=true&SIZE=256%2C256&BBOX={bbox-epsg-3857}&BBOXSR=3857&IMAGESR=3857&DPI=90`,
     ],
   }));
 
-  // add an carto light layer
+  // Add the highway layer and mark it as queryable, and set query endpoint
   store.dispatch(mapActions.addLayer({
+    id: 'highway',
+    source: 'esri',
+    type: 'raster',
     metadata: {
       'mapbox:group': 'base',
-      'bnd:title': 'CartoDB light',
-    },
-    type: 'raster',
-    layout: {
-      visibility: 'none',
-    },
-    id: 'cartolight',
-    source: 'cartolight',
-  }));
-
-  // 'geojson' sources allow rendering a vector layer
-  // with all the features stored as GeoJSON. "data" can
-  // be an individual Feature or a FeatureCollection.
-  store.dispatch(mapActions.addSource('dynamic-source', {type: 'geojson'}));
-
-  store.dispatch(mapActions.addLayer({
-    id: 'dynamic-layer',
-    type: 'circle',
-    source: 'dynamic-source',
-    paint: {
-      'circle-radius': 5,
-      'circle-color': '#552211',
-      'circle-stroke-color': '#00ff11',
+      'bnd:queryable': true,
+      'bnd:query-endpoint': `${baseUrl}identify`
     },
   }));
 
-  // This is called by the onClick, keeping the onClick HTML clean
-  const runFetchGeoJSON = () => {
-    store.dispatch(mapActions.addSource('dynamic-source',
-      {type: 'geojson', data: './data/airports.json'}));
+  // Helper function for loading local .json data
+  const runFetchGeoJSON = (name, type) => {
+    const baseColor = Math.floor(Math.random() * 3);
+    store.dispatch(mapActions.addSource(`${name}-source`,
+      {type: 'geojson', data: `./data/${name}.json`}));
+    if (type === 'circle') {
+      // Render Circles
+      store.dispatch(mapActions.addLayer({
+        id: `${name}-layer`,
+        type: 'circle',
+        source: `${name}-source`,
+        metadata: {
+          'mapbox:group': 'loader',  // Add to loader group
+        },
+        paint: {
+          'circle-radius': 5,
+          'circle-color': colors[baseColor][Math.floor(Math.random() * 10)],
+          'circle-stroke-color': colors[baseColor][Math.floor(Math.random() * 10)],
+        },
+      }));
+    } else if (type === 'fill') {
+      //Render Fill
+      store.dispatch(mapActions.addLayer({
+        id: `${name}-layer`,
+        type: 'fill',
+        source: `${name}-source`,
+        metadata: {
+          'mapbox:group': 'loader',  // Add to loader group
+        },
+        paint: {
+          'fill-opacity': 0.7,
+          'fill-color': colors[baseColor][Math.floor(Math.random() * 10)],
+          'fill-outline-color': colors[baseColor][Math.floor(Math.random() * 10)]
+        },
+      }));
+    }
   };
-  runFetchGeoJSON();
+  runFetchGeoJSON('airports', 'circle');
+  runFetchGeoJSON('states', 'fill');
+  runFetchGeoJSON('canada', 'fill');
+
   // 'geojson' sources allow rendering a vector layer
   // with all the features stored as GeoJSON. "data" can
   // be an individual Feature or a FeatureCollection.
@@ -169,15 +201,15 @@ function main() {
     },
   }));
 
-  // Show the unclustered points in a different colour.
+  // Show the points in a random colour.
   store.dispatch(mapActions.addLayer({
     id: 'random-points',
     source: 'points',
     type: 'circle',
     paint: {
       'circle-radius': 3,
-      'circle-color': '#756bb1',
-      'circle-stroke-color': '#756bb1',
+      'circle-color': colors[Math.floor(Math.random() * 3)][Math.floor(Math.random() * 10)],
+      'circle-stroke-color': colors[Math.floor(Math.random() * 3)][Math.floor(Math.random() * 10)],
     },
     filter: ['!has', 'point_count'],
   }));
@@ -206,20 +238,6 @@ function main() {
   // add 200 random points to the map on startup
   addRandomPoints(200);
 
-  // add the wms source
-  store.dispatch(mapActions.addSource('states', {
-    type: 'raster',
-    tileSize: 256,
-    tiles: ['https://demo.boundlessgeo.com/geoserver/usa/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&FORMAT=image/png&SRS=EPSG:900913&LAYERS=topp:states&STYLES=&WIDTH=256&HEIGHT=256&BBOX={bbox-epsg-3857}'],
-  }));
-
-  // add the wms layer
-  store.dispatch(mapActions.addLayer({
-    id: 'states',
-    source: 'states',
-    type: 'raster',
-  }));
-
   // place the map on the page.
   ReactDOM.render(<Provider store={store}>
     <SdkMap>
@@ -227,7 +245,7 @@ function main() {
     </SdkMap>
   </Provider>, document.getElementById('map'));
 
-  // Add DND to the LayerList
+  // Add dran and drop to the LayerList
   const DragDropLayerList = DragDropContext(HTML5Backend)(SdkLayerList);
 
   ReactDOM.render((
