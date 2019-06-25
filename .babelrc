@@ -1,10 +1,16 @@
 {
-  "presets": ["@babel/preset-react",  "@babel/preset-env"],
+  "presets": [
+    "@babel/react",
+    "@babel/env"
+  ],
   "plugins": [
-    ["module-resolver", {
-      "alias": {
-        "@boundlessgeo/sdk" : "./src"
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@boundlessgeo/sdk": "./src"
+        }
       }
-    },  "transform-object-rest-spread"]
+    ]
   ]
 }
