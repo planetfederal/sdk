@@ -35,7 +35,7 @@ function createIndex(files, metalsmith, done) {
     layout: 'index.html',
     title: 'Boundless SDK Examples',
     pageTitle: 'Boundless SDK in action',
-    contents: new Buffer(index),
+    contents: Buffer.from(index),
     mode: '0644',
   };
 }
