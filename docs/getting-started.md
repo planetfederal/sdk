@@ -78,6 +78,38 @@ import SdkMapReducer from '@boundlessgeo/sdk/reducers/map';
 import * as SdkMapActions from '@boundlessgeo/sdk/actions/map';
 ```
 
+### Change from Functional Component to ES6 Class
+Create react ap uses Functional Components which will work with SDK, this tutorial and most examples use ES6 Classes
+
+#### Change the App function to a ES6 Class
+```javascript
+function App() {
+```
+becomes
+```javascript
+class App extends React.Component {
+```
+
+#### Add a render function
+```javascript
+return (
+    <div className="App">
+    ...
+    ...
+    </div>
+);
+```
+to
+```javascript
+  render() {
+    return (
+      <div className="App">
+      ...
+      </div>
+    );
+  }
+  ```
+
 ### Create a new store with the map reducer.
 
 After the imports add a store with the `SdkMapReducer`:
@@ -128,7 +160,7 @@ Remove the header part, and replace it with an SDK map:
 ### Fire up the browser
 
 The create-react-app creates a built-in hot-compiler and server.
-```
+```bash
 yarn start
 ```
 
