@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-const common  = require('./webpack-common');
+const common = require('./webpack-common');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Config = require('dotenv').config();
 
@@ -22,14 +22,14 @@ const config = {
     port: 3000, // Port Number
     host: 'localhost', // Change to '0.0.0.0' for external facing server
     proxy: {
-      '/geoserver' : {
+      '/geoserver': {
         target: 'http://localhost:8080/',
         secure: false,
       }
     },
   },
   devtool: 'cheap-module-source-map',
-  node: {fs: "empty"},
+  node: {fs: 'empty'},
   output: {
     path: __dirname, // Path of output file
     // [name] refers to the entry point's name.
