@@ -1,9 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
-const common  = require('./webpack-common');
+const common = require('./webpack-common');
 const Config = require('dotenv').config();
 
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const entry = common.getEntries(false);
 
@@ -15,26 +15,24 @@ module.exports = {
   },
   entry: entry,
   devtool: false,
-  node: {fs: "empty"},
+  node: {fs: 'empty'},
   output: {
     path: __dirname, // Path of output file
     // [name] refers to the entry point's name.
     filename: 'build/hosted/examples/[name]/[name].bundle.js',
   },
   plugins: [
-    new UglifyJSPlugin({
-      sourceMap: false,
-      uglifyOptions: {
-        compress: {
-          warnings: false,
-          comparisons: false,  // don't optimize comparisons
-        },
-      },
-    }),
     new webpack.DefinePlugin({
       MAPBOX_API_KEY: Config.parsed ? JSON.stringify(Config.parsed.MAPBOX_API_KEY) : undefined,
     }),
   ],
+  optimization: {
+    minimizer: [new UglifyJsPlugin({
+      cache: true,
+      parallel: true,
+    }),
+    ],
+  },
   module: {
     rules: [
       {
@@ -46,8 +44,8 @@ module.exports = {
         },
       }, {
         test: /\.s?css$/,
-        use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+        use: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
   },
-}
+};

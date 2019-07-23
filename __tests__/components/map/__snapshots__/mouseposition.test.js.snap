@@ -1,5 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Zoom control tests should allow for custom className 1`] = `null`;
+exports[`Zoom control tests should allow for custom className 1`] = `""`;
 
 exports[`Zoom control tests should correctly report the lat lng 1`] = `"<div class=\\"sdk-mouseposition\\">Longitude: 45.00<br>Latitude: 40.00</div>"`;
