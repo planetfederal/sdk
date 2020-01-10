@@ -13,7 +13,7 @@ For the previous version, please see the 1.x branch instead.
 ## Running Project
 To run the examples,
 
-First, clone the project: `git clone https://github.com/boundlessgeo/sdk.git`
+First, clone the project: `git clone https://github.com/planetfederal/sdk.git`
 
 Then change into directory of cloned project: `cd sdk`
 
