@@ -1,7 +1,7 @@
 {
-  "name": "@boundlessgeo/sdk",
+  "name": "webmap-sdk",
   "version": "2.7.5",
-  "description": "Boundless Web SDK",
+  "description": "Webmap SDK",
   "scripts": {
     "start": "webpack-dev-server --config webpack-dev-server.config.js --open --open-page 'build/examples'",
     "serve": "webpack-dev-server --config webpack-dev-server.config.js",
@@ -127,14 +127,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/boundlessgeo/sdk.git"
+    "url": "git+https://github.com/planetfederal/sdk.git"
   },
-  "author": "Boundless Spatial, Inc.",
+  "author": "Planet Federal",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/boundlessgeo/sdk/issues"
+    "url": "https://github.com/planetfederal/sdk/issues"
   },
-  "homepage": "https://github.com/boundlessgeo/sdk#readme",
+  "homepage": "https://github.com/planetfederal/sdk#readme",
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"

@@ -1,9 +1,6 @@
-# Boundless SDK
+# Webmap SDK
 ![Logo](http://boundlessgeo.github.io/sdk/book/styles/boundless_sdk_horiz.svg)
 
-[![Build Status](https://ciapi.boundlessgeo.io/job/web-sdk/job/master/badge/icon)](https://ciapi.boundlessgeo.io/job/web-sdk/job/master/)
-[![Quality Gate](https://sq.boundlessgeo.io/api/badges/gate?key=web-sdk&template=FLAT)](https://sq.boundlessgeo.io/dashboard/index/web-sdk)
-[![Coverage](https://sq.boundlessgeo.io/api/badges/measure?key=web-sdk&template=FLAT&metric=coverage)](https://sq.boundlessgeo.io/component_measures/domain/Coverage?id=web-sdk)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Javascript SDK based on React, OpenLayers and Redux.
