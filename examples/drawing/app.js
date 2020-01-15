@@ -10,16 +10,16 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 
 import RendererSwitch from '../rendererswitch';
-import SdkMapReducer from '@boundlessgeo/sdk/reducers/map';
-import SdkDrawingReducer from '@boundlessgeo/sdk/reducers/drawing';
-import SdkZoomControl from '@boundlessgeo/sdk/components/map/zoom-control';
-import * as mapActions from '@boundlessgeo/sdk/actions/map';
-import * as drawingActions from '@boundlessgeo/sdk/actions/drawing';
+import SdkMapReducer from 'webmap-sdk/reducers/map';
+import SdkDrawingReducer from 'webmap-sdk/reducers/drawing';
+import SdkZoomControl from 'webmap-sdk/components/map/zoom-control';
+import * as mapActions from 'webmap-sdk/actions/map';
+import * as drawingActions from 'webmap-sdk/actions/drawing';
 
-import {INTERACTIONS} from '@boundlessgeo/sdk/constants';
+import {INTERACTIONS} from 'webmap-sdk/constants';
 
 // This will have webpack include all of the SDK styles.
-import '@boundlessgeo/sdk/stylesheet/sdk.scss';
+import 'webmap-sdk/stylesheet/sdk.scss';
 
 // include a MeasureTable component for this app.
 import MeasureTable from './measure-table';

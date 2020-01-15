@@ -20,15 +20,15 @@ import Point from 'ol/geom/Point';
 import LineString from 'ol/geom/LineString';
 import Polygon from 'ol/geom/Polygon';
 
-import SdkMap, {getOLStyleFunctionFromMapboxStyle} from '@boundlessgeo/sdk/components/map';
-import MapReducer from '@boundlessgeo/sdk/reducers/map';
-import DrawingReducer from '@boundlessgeo/sdk/reducers/drawing';
+import SdkMap, {getOLStyleFunctionFromMapboxStyle} from 'webmap-sdk/components/map';
+import MapReducer from 'webmap-sdk/reducers/map';
+import DrawingReducer from 'webmap-sdk/reducers/drawing';
 
-import * as MapActions from '@boundlessgeo/sdk/actions/map';
-import * as DrawingActions from '@boundlessgeo/sdk/actions/drawing';
+import * as MapActions from 'webmap-sdk/actions/map';
+import * as DrawingActions from 'webmap-sdk/actions/drawing';
 
-import {INTERACTIONS} from '@boundlessgeo/sdk/constants';
-import {DRAWING} from '@boundlessgeo/sdk/action-types';
+import {INTERACTIONS} from 'webmap-sdk/constants';
+import {DRAWING} from 'webmap-sdk/action-types';
 
 configure({adapter: new Adapter()});
 

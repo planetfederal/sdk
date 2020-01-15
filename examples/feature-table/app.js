@@ -12,19 +12,19 @@ import ReactDOM from 'react-dom';
 
 import {Provider} from 'react-redux';
 
-import SdkMap from '@boundlessgeo/sdk/components/map';
-import SdkZoomControl from '@boundlessgeo/sdk/components/map/zoom-control';
-import SdkMapReducer from '@boundlessgeo/sdk/reducers/map';
+import SdkMap from 'webmap-sdk/components/map';
+import SdkZoomControl from 'webmap-sdk/components/map/zoom-control';
+import SdkMapReducer from 'webmap-sdk/reducers/map';
 
 import SdkTable from './table';
 
-import * as mapActions from '@boundlessgeo/sdk/actions/map';
+import * as mapActions from 'webmap-sdk/actions/map';
 
 import fetch from 'isomorphic-fetch';
 
 
 // This will have webpack include all of the SDK styles.
-import '@boundlessgeo/sdk/stylesheet/sdk.scss';
+import 'webmap-sdk/stylesheet/sdk.scss';
 
 const store = createStore(combineReducers({
   map: SdkMapReducer,

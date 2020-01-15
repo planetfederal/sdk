@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-present Boundless Spatial Inc., http://boundlessgeo.com
+ * Copyright 2015-present Planet Federal Inc., http://www.planet.com
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +15,7 @@
  *  @desc Actions for dealing with Esri ArcGIS Rest Feature Services.
  */
 
-import {ESRI} from '../action-types';
+import { ESRI } from '../action-types';
 
 /** Esri add source action.
  *  @param {string} sourceName The source name to be added.

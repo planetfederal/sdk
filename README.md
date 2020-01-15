@@ -1,6 +1,5 @@
 # Webmap SDK
-![Logo](http://boundlessgeo.github.io/sdk/book/styles/boundless_sdk_horiz.svg)
-
+![Logo](https://raw.githubusercontent.com/planetfederal/sdk/master/logo.png)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Javascript SDK based on React, OpenLayers and Redux.

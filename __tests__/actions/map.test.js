@@ -3,10 +3,10 @@
 import configureMockStore from 'redux-mock-store';
 import nock from 'nock';
 import createSagaMiddleware from 'redux-saga';
-import * as ContextSagas from '@boundlessgeo/sdk/sagas/context';
-import * as actions from '@boundlessgeo/sdk/actions/map';
-import {MAP, CONTEXT} from '@boundlessgeo/sdk/action-types';
-import {TITLE_KEY, TIME_KEY} from '@boundlessgeo/sdk/constants';
+import * as ContextSagas from 'webmap-sdk/sagas/context';
+import * as actions from 'webmap-sdk/actions/map';
+import {MAP, CONTEXT} from 'webmap-sdk/action-types';
+import {TITLE_KEY, TIME_KEY} from 'webmap-sdk/constants';
 
 const sagaMiddleware = createSagaMiddleware();
 const mockStore = configureMockStore([sagaMiddleware]);

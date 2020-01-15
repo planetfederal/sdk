@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-present Boundless Spatial Inc., http://boundlessgeo.com
+ * Copyright 2015-present Planet Federal Inc., http://www.planet.com
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,18 +14,18 @@
 import fetch from 'isomorphic-fetch';
 
 import PropTypes from 'prop-types';
-import {Component} from 'react';
-import {connect} from 'react-redux';
+import { Component } from 'react';
+import { connect } from 'react-redux';
 
 import WfsFormat from 'ol/format/WFS';
 import GeoJsonFormat from 'ol/format/GeoJSON';
 import Projection from 'ol/proj/Projection';
-import {addEquivalentProjections, get} from 'ol/proj';
+import { addEquivalentProjections, get } from 'ol/proj';
 
-import {finishedAction} from '../actions/wfs';
+import { finishedAction } from '../actions/wfs';
 
-import {jsonClone} from '../util';
-import {WFS} from '../action-types';
+import { jsonClone } from '../util';
+import { WFS } from '../action-types';
 
 /** @module components/wfs
  * @desc Provides a component which will respond to WFS updates.
@@ -65,7 +65,7 @@ class WfsController extends Component {
       delete json_feature.properties['bbox'];
 
       let geom_name = src.geometryName ? src.geometryName : 'geometry';
-      const geojson_format = new GeoJsonFormat({geometryName: geom_name});
+      const geojson_format = new GeoJsonFormat({ geometryName: geom_name });
       const feature = geojson_format.readFeature(json_feature, {
         dataProjection: 'EPSG:4326',
         featureProjection: this.wfs_proj,
@@ -115,12 +115,12 @@ class WfsController extends Component {
           throw Error(response.statusText);
         }
       }).then(text => (new window.DOMParser()).parseFromString(text, 'text/xml'))
-        .then(data  => {
-        // A 200 does not necessarily mean the
-        //  request was successful.  This attempts to
-        //  parse the transaction response and then passes
-        //  it to onFinishTransaction. Handling is left to the
-        //  user.
+        .then(data => {
+          // A 200 does not necessarily mean the
+          //  request was successful.  This attempts to
+          //  parse the transaction response and then passes
+          //  it to onFinishTransaction. Handling is left to the
+          //  user.
           if (data.documentElement.localName === 'ExceptionReport') {
             const exceptionNode = data.getElementsByTagNameNS('http://www.opengis.net/ows', 'ExceptionText');
             throw Error(exceptionNode.item(0).textContent);
@@ -135,7 +135,7 @@ class WfsController extends Component {
             this.props.onFinishTransaction(wfs_response, action);
           }
         }).catch((error) => {
-        // ensure the action is removed from the state
+          // ensure the action is removed from the state
           this.props.dispatch(finishedAction(id));
           // remove it from the pending actions
           delete this.pendingActions[id];
@@ -190,9 +190,9 @@ WfsController.propTypes = {
 WfsController.defaultProps = {
   actions: {},
   sources: {},
-  onStartTransaction: () => {},
-  onFinishTransaction: () => {},
-  onRequestError: () => {},
+  onStartTransaction: () => { },
+  onFinishTransaction: () => { },
+  onRequestError: () => { },
   fetchOptions: {
     credentials: 'same-origin',
   },

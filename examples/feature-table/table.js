@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import * as mapActions from '@boundlessgeo/sdk/actions/map';
+import * as mapActions from 'webmap-sdk/actions/map';
 
 export class EditField extends React.Component {
   render() {

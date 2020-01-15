@@ -8,16 +8,16 @@ import ReactDOM from 'react-dom';
 
 import {Provider} from 'react-redux';
 
-import SdkZoomControl from '@boundlessgeo/sdk/components/map/zoom-control';
-import SdkMapReducer from '@boundlessgeo/sdk/reducers/map';
-import SdkMapInfoReducer from '@boundlessgeo/sdk/reducers/mapinfo';
-import {getLayerById} from '@boundlessgeo/sdk/util';
-import * as mapActions from '@boundlessgeo/sdk/actions/map';
+import SdkZoomControl from 'webmap-sdk/components/map/zoom-control';
+import SdkMapReducer from 'webmap-sdk/reducers/map';
+import SdkMapInfoReducer from 'webmap-sdk/reducers/mapinfo';
+import {getLayerById} from 'webmap-sdk/util';
+import * as mapActions from 'webmap-sdk/actions/map';
 
 import RendererSwitch from '../rendererswitch';
 
 // This will have webpack include all of the SDK styles.
-import '@boundlessgeo/sdk/stylesheet/sdk.scss';
+import 'webmap-sdk/stylesheet/sdk.scss';
 
 const store = createStore(combineReducers({
   map: SdkMapReducer,

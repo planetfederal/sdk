@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-present Boundless Spatial Inc., http://boundlessgeo.com
+ * Copyright 2015-present Planet Federal Inc., http://www.planet.com
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,10 +18,10 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-import {setView} from '../actions/map';
-import {parseQueryString, encodeQueryObject} from '../util';
+import { setView } from '../actions/map';
+import { parseQueryString, encodeQueryObject } from '../util';
 
 /** Attempts to parse a given value as a floating point number.
  * @param {*} value The given value to try to parse.

@@ -21,17 +21,17 @@ import TileState from 'ol/TileState';
 
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
-import {radiansToDegrees} from '@boundlessgeo/sdk/util';
+import {radiansToDegrees} from 'webmap-sdk/util';
 
-import ConnectedMap, {Map} from '@boundlessgeo/sdk/components/map';
-import {hydrateLayer, getFakeStyle, getMapExtent, getTileJSONUrl} from '@boundlessgeo/sdk/components/map';
-import SdkPopup from '@boundlessgeo/sdk/components/map/popup';
-import MapReducer from '@boundlessgeo/sdk/reducers/map';
-import MapInfoReducer from '@boundlessgeo/sdk/reducers/mapinfo';
-import PrintReducer from '@boundlessgeo/sdk/reducers/print';
-import * as MapActions from '@boundlessgeo/sdk/actions/map';
-import * as MapInfoActions from '@boundlessgeo/sdk/actions/mapinfo';
-import * as PrintActions from '@boundlessgeo/sdk/actions/print';
+import ConnectedMap, {Map} from 'webmap-sdk/components/map';
+import {hydrateLayer, getFakeStyle, getMapExtent, getTileJSONUrl} from 'webmap-sdk/components/map';
+import SdkPopup from 'webmap-sdk/components/map/popup';
+import MapReducer from 'webmap-sdk/reducers/map';
+import MapInfoReducer from 'webmap-sdk/reducers/mapinfo';
+import PrintReducer from 'webmap-sdk/reducers/print';
+import * as MapActions from 'webmap-sdk/actions/map';
+import * as MapInfoActions from 'webmap-sdk/actions/mapinfo';
+import * as PrintActions from 'webmap-sdk/actions/print';
 
 configure({adapter: new Adapter()});
 

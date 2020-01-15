@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import OlGeolocation from 'ol/Geolocation';
-import * as mapActions from '@boundlessgeo/sdk/actions/map';
+import * as mapActions from 'webmap-sdk/actions/map';
 
 function rounded(num) {
   return (Math.round(num * 100) / 100);

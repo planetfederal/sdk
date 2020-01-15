@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-present Boundless Spatial Inc., http://boundlessgeo.com
+ * Copyright 2015-present Planet Federal Inc., http://www.planet.com
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,7 @@
 import ClusterSource from 'ol/source/Cluster';
 
 /** @module source/cluster
- * @desc ClusterSource class for Boundless SDK,
+ * @desc ClusterSource class for Webmap SDK,
  *  extends OpenLayers ClusterSource,
  *  {@link http://openlayers.org/en/latest/apidoc/ol.source.Cluster.html}
  */

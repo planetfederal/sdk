@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-present Boundless Spatial Inc., http://boundlessgeo.com
+ * Copyright 2015-present Planet Federal Inc., http://www.planet.com
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,14 +12,14 @@
  */
 
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 /** @module components/map/mouseposition
  * @example
- * import SdkMousePosition from '@boundlessgeo/sdk/components/map/mouseposition';
+ * import SdkMousePosition from 'webmap-sdk/components/map/mouseposition';
  * import { Provider } from 'react-redux';
- * import SdkMap from '@boundlessgeo/sdk/components/map';
+ * import SdkMap from 'webmap-sdk/components/map';
  * import ReactDOM from 'react-dom';
  *
  * ReactDOM.render(<Provider store={store}>
@@ -40,7 +40,7 @@ class MousePosition extends React.Component {
     if (mouseposition.lngLat !== null) {
       const text = this.props.templateFunction(mouseposition);
       return (
-        <div className={className} style={this.props.style} dangerouslySetInnerHTML={{__html: text}}/>
+        <div className={className} style={this.props.style} dangerouslySetInnerHTML={{ __html: text }} />
       );
     } else {
       return false;

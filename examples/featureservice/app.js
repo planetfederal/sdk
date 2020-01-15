@@ -10,21 +10,21 @@ import {Provider} from 'react-redux';
 
 import RendererSwitch from '../rendererswitch';
 
-import SdkZoomControl from '@boundlessgeo/sdk/components/map/zoom-control';
-import SdkMapReducer from '@boundlessgeo/sdk/reducers/map';
-import SdkMapInfoReducer from '@boundlessgeo/sdk/reducers/mapinfo';
-import SdkEsriReducer from '@boundlessgeo/sdk/reducers/esri';
+import SdkZoomControl from 'webmap-sdk/components/map/zoom-control';
+import SdkMapReducer from 'webmap-sdk/reducers/map';
+import SdkMapInfoReducer from 'webmap-sdk/reducers/mapinfo';
+import SdkEsriReducer from 'webmap-sdk/reducers/esri';
 
-import SdkHashHistory from '@boundlessgeo/sdk/components/history';
+import SdkHashHistory from 'webmap-sdk/components/history';
 
-import * as SdkEsriActions from '@boundlessgeo/sdk/actions/esri';
+import * as SdkEsriActions from 'webmap-sdk/actions/esri';
 
-import EsriController from '@boundlessgeo/sdk/components/esri';
+import EsriController from 'webmap-sdk/components/esri';
 
-import * as SdkMapActions from '@boundlessgeo/sdk/actions/map';
+import * as SdkMapActions from 'webmap-sdk/actions/map';
 
 // This will have webpack include all of the SDK styles.
-import '@boundlessgeo/sdk/stylesheet/sdk.scss';
+import 'webmap-sdk/stylesheet/sdk.scss';
 
 const store = createStore(combineReducers({
   map: SdkMapReducer,

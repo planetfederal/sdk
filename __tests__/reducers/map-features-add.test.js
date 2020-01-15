@@ -3,8 +3,8 @@
 import deepFreeze from 'deep-freeze';
 
 import {toLonLat} from 'ol/proj';
-import reducer from '@boundlessgeo/sdk/reducers/map';
-import {MAP} from '@boundlessgeo/sdk/action-types';
+import reducer from 'webmap-sdk/reducers/map';
+import {MAP} from 'webmap-sdk/action-types';
 
 describe('map reducer add features', () => {
 

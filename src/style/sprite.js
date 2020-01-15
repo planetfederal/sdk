@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-present Boundless Spatial Inc., http://boundlessgeo.com
+ * Copyright 2015-present Planet Federal Inc., http://www.planet.com
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -40,7 +40,7 @@ export default class SdkSpriteStyle extends IconStyle {
     if (img.width) {
       this.drawImage_();
     } else {
-      img.onload = function() {
+      img.onload = function () {
         self.drawImage_();
       };
     }

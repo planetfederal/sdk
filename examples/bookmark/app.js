@@ -12,10 +12,10 @@ import fetch from 'isomorphic-fetch';
 
 import {Provider} from 'react-redux';
 
-import SdkMap from '@boundlessgeo/sdk/components/map';
-import SdkMapReducer from '@boundlessgeo/sdk/reducers/map';
-import SdkZoomControl from '@boundlessgeo/sdk/components/map/zoom-control';
-import * as mapActions from '@boundlessgeo/sdk/actions/map';
+import SdkMap from 'webmap-sdk/components/map';
+import SdkMapReducer from 'webmap-sdk/reducers/map';
+import SdkZoomControl from 'webmap-sdk/components/map/zoom-control';
+import * as mapActions from 'webmap-sdk/actions/map';
 
 import BookmarkComponent from './bookmarks';
 import MoveButtonComponent from './moveButton';
@@ -24,10 +24,10 @@ import AddBookmarkComponent from './addBookmark';
 import bookmarkReducer from './reducer';
 import * as bookmarkAction from './action';
 
-import * as ContextSagas from '@boundlessgeo/sdk/sagas/context';
+import * as ContextSagas from 'webmap-sdk/sagas/context';
 
 // This will have webpack include all of the SDK styles.
-import '@boundlessgeo/sdk/stylesheet/sdk.scss';
+import 'webmap-sdk/stylesheet/sdk.scss';
 
 // create the saga middleware
 const saga_middleware = createSagaMiddleware();

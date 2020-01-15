@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-present Boundless Spatial Inc., http://boundlessgeo.com
+ * Copyright 2015-present Planet Federal Inc., http://www.planet.com
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -11,13 +11,13 @@
  * under the License.
  */
 
-import {GROUP_KEY, TITLE_KEY} from './constants';
+import { GROUP_KEY, TITLE_KEY } from './constants';
 import GeoJsonFormat from 'ol/format/GeoJSON';
-import {transformExtent} from 'ol/proj';
+import { transformExtent } from 'ol/proj';
 import View from 'ol/View';
 
 /** @module util
- * @desc functions for Boundless SDK.
+ * @desc functions for Webmap SDK.
  *
  *  This is the grab bag of universally useful functions.
  */
@@ -42,7 +42,7 @@ export function jsonEquals(objectA, objectB) {
  * @returns {number} The resolution for that zoom level.
  */
 export function getResolutionForZoom(zoom, projection) {
-  const view = new View({projection: projection});
+  const view = new View({ projection: projection });
   return view.getResolutionForZoom(zoom) / 2;
 }
 
@@ -55,7 +55,7 @@ export function getResolutionForZoom(zoom, projection) {
  * @returns {number} The zoom level for that zoom resolution.
  */
 export function getZoomForResolution(resolution, projection) {
-  const view = new View({projection: projection});
+  const view = new View({ projection: projection });
   return view.getZoomForResolution(resolution) - 1;
 }
 

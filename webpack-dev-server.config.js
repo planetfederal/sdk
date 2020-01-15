@@ -9,7 +9,7 @@ const entry = common.getEntries(true);
 const config = {
   resolve: {
     alias: {
-      '@boundlessgeo/sdk': path.resolve(__dirname, 'src/'),
+      'webmap-sdk': path.resolve(__dirname, 'src/'),
     },
   },
   // Entry points to the project

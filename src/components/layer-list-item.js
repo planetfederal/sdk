@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-present Boundless Spatial Inc., http://boundlessgeo.com
+ * Copyright 2015-present Planet Federal Inc., http://www.planet.com
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +13,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import {DragSource, DropTarget} from 'react-dnd';
-import {getLayerIndexById, isLayerVisible, getLayerTitle} from '../util';
+import { DragSource, DropTarget } from 'react-dnd';
+import { getLayerIndexById, isLayerVisible, getLayerTitle } from '../util';
 import * as mapActions from '../actions/map';
 
 export const layerListItemSource = {
@@ -52,7 +52,7 @@ export function collect(connect, monitor) {
 
 export function collectDrop(connect, monitor) {
   return {
-    isOver: monitor.isOver({shallow: true}),
+    isOver: monitor.isOver({ shallow: true }),
     connectDropTarget: connect.dropTarget()
   };
 }

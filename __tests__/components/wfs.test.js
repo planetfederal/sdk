@@ -10,9 +10,9 @@ import  Adapter from 'enzyme-adapter-react-16';
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 
-import WfsReducer from '@boundlessgeo/sdk/reducers/wfs';
-import WfsController from '@boundlessgeo/sdk/components/wfs';
-import * as actions from '@boundlessgeo/sdk/actions/wfs';
+import WfsReducer from 'webmap-sdk/reducers/wfs';
+import WfsController from 'webmap-sdk/components/wfs';
+import * as actions from 'webmap-sdk/actions/wfs';
 
 configure({adapter: new Adapter()});
 

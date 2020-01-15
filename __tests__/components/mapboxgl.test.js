@@ -6,11 +6,11 @@ import  Adapter from 'enzyme-adapter-react-16';
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 
-import MapReducer from '@boundlessgeo/sdk/reducers/map';
-import MapInfoReducer from '@boundlessgeo/sdk/reducers/mapinfo';
-import DrawingReducer from '@boundlessgeo/sdk/reducers/drawing';
-import ConnectedMap, {MapboxGL, getMapExtent} from '@boundlessgeo/sdk/components/mapboxgl';
-import SdkPopup from '@boundlessgeo/sdk/components/map/popup';
+import MapReducer from 'webmap-sdk/reducers/map';
+import MapInfoReducer from 'webmap-sdk/reducers/mapinfo';
+import DrawingReducer from 'webmap-sdk/reducers/drawing';
+import ConnectedMap, {MapboxGL, getMapExtent} from 'webmap-sdk/components/mapboxgl';
+import SdkPopup from 'webmap-sdk/components/map/popup';
 
 configure({adapter: new Adapter()});
 

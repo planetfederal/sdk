@@ -11,7 +11,7 @@ module.exports =
           'module-resolver',
           {
             'alias': {
-              '@boundlessgeo/sdk': './src'
+              'webmap-sdk': './src'
             }
           }
         ]

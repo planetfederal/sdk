@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-present Boundless Spatial Inc., http://boundlessgeo.com
+ * Copyright 2015-present Planet Federal Inc., http://www.planet.com
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,19 +15,19 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import uuid from 'uuid';
-import {connect} from 'react-redux';
-import {setView, setBearing} from '../actions/map';
-import {setMapSize, setMousePosition, setMapExtent, setResolution, setProjection} from '../actions/mapinfo';
-import {getResolutionForZoom, getKey, optionalEquals} from '../util';
-import MapCommon, {MapRender} from './map-common';
+import { connect } from 'react-redux';
+import { setView, setBearing } from '../actions/map';
+import { setMapSize, setMousePosition, setMapExtent, setResolution, setProjection } from '../actions/mapinfo';
+import { getResolutionForZoom, getKey, optionalEquals } from '../util';
+import MapCommon, { MapRender } from './map-common';
 
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
-import {dataVersionKey} from '../reducers/map';
-import {INTERACTIONS} from '../constants';
+import { dataVersionKey } from '../reducers/map';
+import { INTERACTIONS } from '../constants';
 import area from '@turf/area';
 import distance from '@turf/distance';
-import {setMeasureFeature, clearMeasureFeature} from '../actions/drawing';
-import {LAYER_VERSION_KEY, SOURCE_VERSION_KEY, MIN_ZOOM_KEY, MAX_ZOOM_KEY} from '../constants';
+import { setMeasureFeature, clearMeasureFeature } from '../actions/drawing';
+import { LAYER_VERSION_KEY, SOURCE_VERSION_KEY, MIN_ZOOM_KEY, MAX_ZOOM_KEY } from '../constants';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import StaticMode from '@mapbox/mapbox-gl-draw-static-mode';
@@ -120,7 +120,7 @@ export class MapboxGL extends React.Component {
       // center has not been set yet or differs
       if (prevProps.map.center === undefined ||
         (this.props.map.center[0] !== prevProps.map.center[0]
-        || this.props.map.center[1] !== prevProps.map.center[1])) {
+          || this.props.map.center[1] !== prevProps.map.center[1])) {
         this.map && this.map.setCenter(this.props.map.center);
       }
     }
@@ -140,7 +140,7 @@ export class MapboxGL extends React.Component {
       if (src && src.type === 'geojson') {
         const version_key = dataVersionKey(src_name);
         if (prevProps.map.metadata !== undefined &&
-            prevProps.map.metadata[version_key] !== this.props.map.metadata[version_key] && this.map) {
+          prevProps.map.metadata[version_key] !== this.props.map.metadata[version_key] && this.map) {
           const source = this.map.getSource(src_name);
           if (source !== undefined) {
             source.setData(this.props.map.sources[src_name].data);
@@ -150,13 +150,13 @@ export class MapboxGL extends React.Component {
     }
     // trigger a resize event when the size has changed or a redraw is requested.
     if (!optionalEquals(this.props, prevProps, 'mapinfo', 'size')
-        || !optionalEquals(this.props, prevProps, 'mapinfo', 'requestedRedraws')) {
+      || !optionalEquals(this.props, prevProps, 'mapinfo', 'requestedRedraws')) {
       this.map.resize();
     }
 
     // change the current interaction as needed
     if (this.props.drawing && (this.props.drawing.interaction !== prevProps.drawing.interaction
-        || this.props.drawing.sourceName !== prevProps.drawing.sourceName)) {
+      || this.props.drawing.sourceName !== prevProps.drawing.sourceName)) {
       this.updateInteraction(this.props.drawing);
     }
   }
@@ -221,7 +221,7 @@ export class MapboxGL extends React.Component {
         });
       }
       modes.static = StaticMode;
-      const drawOptions = {displayControlsDefault: false, modes: modes, defaultMode: STATIC_MODE};
+      const drawOptions = { displayControlsDefault: false, modes: modes, defaultMode: STATIC_MODE };
       this.draw = new MapboxDraw(drawOptions);
       this.map.addControl(this.draw);
     }
@@ -309,17 +309,17 @@ export class MapboxGL extends React.Component {
   }
 
   onDrawCreate(evt, mode, options = {}) {
-    this.onFeatureEvent('drawn', this.props.drawing.sourceName, {type: 'FeatureCollection', features: evt.features});
+    this.onFeatureEvent('drawn', this.props.drawing.sourceName, { type: 'FeatureCollection', features: evt.features });
     const draw = this.draw;
-    window.setTimeout(function() {
+    window.setTimeout(function () {
       // allow to draw more features
       draw.changeMode(mode, options);
     }, 0);
   }
   onDrawModify(evt, mode, options = {}) {
-    this.onFeatureEvent('modified', this.props.drawing.sourceName, {type: 'FeatureCollection', features: evt.features});
+    this.onFeatureEvent('modified', this.props.drawing.sourceName, { type: 'FeatureCollection', features: evt.features });
     const draw = this.draw;
-    window.setTimeout(function() {
+    window.setTimeout(function () {
       draw.changeMode(mode, options);
     }, 0);
   }
@@ -337,7 +337,7 @@ export class MapboxGL extends React.Component {
 
   optionsForMode(mode, evt) {
     if (mode === DIRECT_SELECT_MODE) {
-      return {featureId: evt.features[0].id};
+      return { featureId: evt.features[0].id };
     }
     return {};
   }
@@ -400,7 +400,7 @@ export class MapboxGL extends React.Component {
       const drawCreate = (evt) => {
         this.onDrawCreate(evt, this.afterMode, this.optionsForMode(this.afterMode, evt));
       };
-      const drawModify =  (evt) => {
+      const drawModify = (evt) => {
         this.onDrawModify(evt, this.afterMode, this.optionsForMode(this.afterMode, evt));
       };
       this.map.off('draw.create', drawCreate);
@@ -549,4 +549,4 @@ function mapDispatchToProps(dispatch) {
 
 /** Export the connected class by default.
  */
-export default connect(mapStateToProps, mapDispatchToProps, undefined, {forwardRef: true})(MapboxGL);
+export default connect(mapStateToProps, mapDispatchToProps, undefined, { forwardRef: true })(MapboxGL);

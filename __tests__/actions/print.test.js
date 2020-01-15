@@ -1,7 +1,7 @@
 /* global describe, it, expect */
 
-import * as actions from '@boundlessgeo/sdk/actions/print';
-import {PRINT} from '@boundlessgeo/sdk/action-types';
+import * as actions from 'webmap-sdk/actions/print';
+import {PRINT} from 'webmap-sdk/action-types';
 
 describe('print actions', () => {
   it('should create an action to export image', () => {

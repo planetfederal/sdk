@@ -1,5 +1,5 @@
 import React from 'react';
-import SdkPopup from '@boundlessgeo/sdk/components/map/popup';
+import SdkPopup from 'webmap-sdk/components/map/popup';
 
 /**
  * Show the WMS GetFeatureInfo feature in a popup.

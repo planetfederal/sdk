@@ -6,10 +6,10 @@ import  Adapter from 'enzyme-adapter-react-16';
 
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
-import MapReducer from '@boundlessgeo/sdk/reducers/map';
-import {setView} from '@boundlessgeo/sdk/actions/map';
+import MapReducer from 'webmap-sdk/reducers/map';
+import {setView} from 'webmap-sdk/actions/map';
 
-import SdkHashHistory, {HashHistory} from '@boundlessgeo/sdk/components/history';
+import SdkHashHistory, {HashHistory} from 'webmap-sdk/components/history';
 
 configure({adapter: new Adapter()});
 

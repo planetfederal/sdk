@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SdkMapbox from '@boundlessgeo/sdk/components/mapboxgl';
-import SdkMap from '@boundlessgeo/sdk/components/map';
+import SdkMapbox from 'webmap-sdk/components/mapboxgl';
+import SdkMap from 'webmap-sdk/components/map';
 
 export default class RendererSwitch extends React.Component {
   constructor(props) {
