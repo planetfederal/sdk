@@ -11,9 +11,9 @@
  * under the License.
  */
 
-import { GROUP_KEY, TITLE_KEY } from './constants';
+import {GROUP_KEY, TITLE_KEY} from './constants';
 import GeoJsonFormat from 'ol/format/GeoJSON';
-import { transformExtent } from 'ol/proj';
+import {transformExtent} from 'ol/proj';
 import View from 'ol/View';
 
 /** @module util
@@ -42,7 +42,7 @@ export function jsonEquals(objectA, objectB) {
  * @returns {number} The resolution for that zoom level.
  */
 export function getResolutionForZoom(zoom, projection) {
-  const view = new View({ projection: projection });
+  const view = new View({projection: projection});
   return view.getResolutionForZoom(zoom) / 2;
 }
 
@@ -55,7 +55,7 @@ export function getResolutionForZoom(zoom, projection) {
  * @returns {number} The zoom level for that zoom resolution.
  */
 export function getZoomForResolution(resolution, projection) {
-  const view = new View({ projection: projection });
+  const view = new View({projection: projection});
   return view.getZoomForResolution(resolution) - 1;
 }
 

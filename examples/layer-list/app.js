@@ -5,13 +5,13 @@
  *
  */
 
-import { createStore, combineReducers } from 'redux';
+import {createStore, combineReducers} from 'redux';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { DragDropContext, DragSource, DropTarget } from 'react-dnd';
+import {DragDropContext, DragSource, DropTarget} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import { types, layerListItemSource, layerListItemTarget, collect, collectDrop } from 'webmap-sdk/components/layer-list-item';
+import {types, layerListItemSource, layerListItemTarget, collect, collectDrop} from 'webmap-sdk/components/layer-list-item';
 import SdkMap from 'webmap-sdk/components/map';
 import SdkZoomControl from 'webmap-sdk/components/map/zoom-control';
 import SdkMapReducer from 'webmap-sdk/reducers/map';
@@ -20,7 +20,7 @@ import * as mapActions from 'webmap-sdk/actions/map';
 import SdkLayerList from 'webmap-sdk/components/layer-list';
 import SdkLayerListItem from 'webmap-sdk/components/layer-list-item';
 
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 
 /* eslint-disable no-underscore-dangle */
 const store = createStore(combineReducers({
@@ -138,7 +138,7 @@ function main() {
   // 'geojson' sources allow rendering a vector layer
   // with all the features stored as GeoJSON. "data" can
   // be an individual Feature or a FeatureCollection.
-  store.dispatch(mapActions.addSource('dynamic-source', { type: 'geojson' }));
+  store.dispatch(mapActions.addSource('dynamic-source', {type: 'geojson'}));
 
   store.dispatch(mapActions.addLayer({
     id: 'dynamic-layer',
@@ -154,7 +154,7 @@ function main() {
   // This is called by the onClick, keeping the onClick HTML clean
   const runFetchGeoJSON = () => {
     store.dispatch(mapActions.addSource('dynamic-source',
-      { type: 'geojson', data: './data/airports.json' }));
+      {type: 'geojson', data: './data/airports.json'}));
   };
   runFetchGeoJSON();
   // 'geojson' sources allow rendering a vector layer

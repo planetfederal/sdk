@@ -12,11 +12,11 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import { LAYERLIST_HIDE_KEY, GROUP_KEY, GROUPS_KEY } from '../constants';
-import { getLayerIndexById, hasSourceError } from '../util';
-import { SdkLayerListItemDD } from './layer-list-item';
+import {LAYERLIST_HIDE_KEY, GROUP_KEY, GROUPS_KEY} from '../constants';
+import {getLayerIndexById, hasSourceError} from '../util';
+import {SdkLayerListItemDD} from './layer-list-item';
 
 export class SdkList extends React.Component {
   render() {

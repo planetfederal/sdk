@@ -14,17 +14,17 @@
 import fetch from 'isomorphic-fetch';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { connect } from 'react-redux';
-import { toContext } from 'ol/render';
+import {connect} from 'react-redux';
+import {toContext} from 'ol/render';
 import LineString from 'ol/geom/LineString';
 import Polygon from 'ol/geom/Polygon';
 import Point from 'ol/geom/Point';
 import Feature from 'ol/Feature';
 import VectorLayer from 'ol/layer/Vector';
-import { applyStyle } from 'ol-mapbox-style';
-import { jsonEquals, jsonClone, getLayerById, parseQueryString, encodeQueryObject } from '../util';
-import { LEGEND_TYPE, LEGEND_CONTENT } from '../constants';
-import { getFakeStyle, hydrateLayer } from './map';
+import {applyStyle} from 'ol-mapbox-style';
+import {jsonEquals, jsonClone, getLayerById, parseQueryString, encodeQueryObject} from '../util';
+import {LEGEND_TYPE, LEGEND_CONTENT} from '../constants';
+import {getFakeStyle, hydrateLayer} from './map';
 import AsyncImage from './async-img';
 
 /** @module components/legend
@@ -261,7 +261,7 @@ export class Legend extends React.Component {
       const size = props.size;
       return (<canvas ref={(c) => {
         if (c !== null) {
-          let vectorContext = toContext(c.getContext('2d'), { size: size });
+          let vectorContext = toContext(c.getContext('2d'), {size: size});
           const sources = {};
           sources[layer.source] = layer_src;
           const fake_style = getFakeStyle(
@@ -298,12 +298,12 @@ export class Legend extends React.Component {
                   vectorContext.drawGeometry(geom);
                 }
               } else {
-                me.setState({ empty: true });
+                me.setState({empty: true});
               }
             }
           };
 
-          applyStyle(olLayer, fake_style, layer.source).then(function () {
+          applyStyle(olLayer, fake_style, layer.source).then(function() {
             if (!(layer.layout && layer.layout['icon-image'])) {
               onApplyStyle();
             } else {

@@ -9,6 +9,7 @@
     "test": "jest --maxWorkers=2",
     "test:watch": "npm test -- --watch",
     "lint": "eslint __tests__ src examples tasks",
+    "lint-fix": "eslint __tests__ src examples tasks --fix",
     "cover": "node_modules/.bin/jest --coverage",
     "sass": "node-sass --include-path ./node_modules ./src/stylesheet/sdk.scss",
     "build:examples": "node tasks/build-examples.js",

@@ -14,18 +14,18 @@
 import fetch from 'isomorphic-fetch';
 
 import PropTypes from 'prop-types';
-import { Component } from 'react';
-import { connect } from 'react-redux';
+import {Component} from 'react';
+import {connect} from 'react-redux';
 
 import WfsFormat from 'ol/format/WFS';
 import GeoJsonFormat from 'ol/format/GeoJSON';
 import Projection from 'ol/proj/Projection';
-import { addEquivalentProjections, get } from 'ol/proj';
+import {addEquivalentProjections, get} from 'ol/proj';
 
-import { finishedAction } from '../actions/wfs';
+import {finishedAction} from '../actions/wfs';
 
-import { jsonClone } from '../util';
-import { WFS } from '../action-types';
+import {jsonClone} from '../util';
+import {WFS} from '../action-types';
 
 /** @module components/wfs
  * @desc Provides a component which will respond to WFS updates.
@@ -65,7 +65,7 @@ class WfsController extends Component {
       delete json_feature.properties['bbox'];
 
       let geom_name = src.geometryName ? src.geometryName : 'geometry';
-      const geojson_format = new GeoJsonFormat({ geometryName: geom_name });
+      const geojson_format = new GeoJsonFormat({geometryName: geom_name});
       const feature = geojson_format.readFeature(json_feature, {
         dataProjection: 'EPSG:4326',
         featureProjection: this.wfs_proj,

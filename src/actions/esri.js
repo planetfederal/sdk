@@ -15,7 +15,7 @@
  *  @desc Actions for dealing with Esri ArcGIS Rest Feature Services.
  */
 
-import { ESRI } from '../action-types';
+import {ESRI} from '../action-types';
 
 /** Esri add source action.
  *  @param {string} sourceName The source name to be added.

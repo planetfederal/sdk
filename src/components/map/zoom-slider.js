@@ -12,10 +12,10 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import * as mapActions from '../../actions/map';
-import { DEFAULT_ZOOM } from '../../constants';
+import {DEFAULT_ZOOM} from '../../constants';
 
 /** @module components/map/zoom-slider
  * @example

@@ -14,16 +14,16 @@
 import fetchJsonp from 'fetch-jsonp';
 
 import PropTypes from 'prop-types';
-import { Component } from 'react';
-import { connect } from 'react-redux';
+import {Component} from 'react';
+import {connect} from 'react-redux';
 
 import View from 'ol/View';
 import EsriJsonFormat from 'ol/format/EsriJSON';
 import GeoJsonFormat from 'ol/format/GeoJSON';
-import { fromLonLat } from 'ol/proj';
+import {fromLonLat} from 'ol/proj';
 
-import { encodeQueryObject } from '../util';
-import { updateSource } from '../actions/map';
+import {encodeQueryObject} from '../util';
+import {updateSource} from '../actions/map';
 
 /** @module components/esri
  * @desc Provides a component which will handle ArcGIS Rest Feature Service interaction.
@@ -75,12 +75,12 @@ class EsriController extends Component {
         outSR: '4326',
       };
       const url = `${source.onlineResource}${source.featureLayer}/query/?${encodeQueryObject(params)}`;
-      fetchJsonp(url, { timeout: this.props.timeout }).then(
+      fetchJsonp(url, {timeout: this.props.timeout}).then(
         response => response.json(),
       ).then((json) => {
         const features = this.esri_format.readFeatures(json);
-        this.props.dispatch(updateSource(key, { data: this.geojson_format.writeFeaturesObject(features) }));
-      }).catch(function (error) {
+        this.props.dispatch(updateSource(key, {data: this.geojson_format.writeFeaturesObject(features)}));
+      }).catch(function(error) {
         console.error('An error occured.', error);
       });
     }

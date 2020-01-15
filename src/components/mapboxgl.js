@@ -15,19 +15,19 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import uuid from 'uuid';
-import { connect } from 'react-redux';
-import { setView, setBearing } from '../actions/map';
-import { setMapSize, setMousePosition, setMapExtent, setResolution, setProjection } from '../actions/mapinfo';
-import { getResolutionForZoom, getKey, optionalEquals } from '../util';
-import MapCommon, { MapRender } from './map-common';
+import {connect} from 'react-redux';
+import {setView, setBearing} from '../actions/map';
+import {setMapSize, setMousePosition, setMapExtent, setResolution, setProjection} from '../actions/mapinfo';
+import {getResolutionForZoom, getKey, optionalEquals} from '../util';
+import MapCommon, {MapRender} from './map-common';
 
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
-import { dataVersionKey } from '../reducers/map';
-import { INTERACTIONS } from '../constants';
+import {dataVersionKey} from '../reducers/map';
+import {INTERACTIONS} from '../constants';
 import area from '@turf/area';
 import distance from '@turf/distance';
-import { setMeasureFeature, clearMeasureFeature } from '../actions/drawing';
-import { LAYER_VERSION_KEY, SOURCE_VERSION_KEY, MIN_ZOOM_KEY, MAX_ZOOM_KEY } from '../constants';
+import {setMeasureFeature, clearMeasureFeature} from '../actions/drawing';
+import {LAYER_VERSION_KEY, SOURCE_VERSION_KEY, MIN_ZOOM_KEY, MAX_ZOOM_KEY} from '../constants';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import StaticMode from '@mapbox/mapbox-gl-draw-static-mode';
@@ -221,7 +221,7 @@ export class MapboxGL extends React.Component {
         });
       }
       modes.static = StaticMode;
-      const drawOptions = { displayControlsDefault: false, modes: modes, defaultMode: STATIC_MODE };
+      const drawOptions = {displayControlsDefault: false, modes: modes, defaultMode: STATIC_MODE};
       this.draw = new MapboxDraw(drawOptions);
       this.map.addControl(this.draw);
     }
@@ -309,17 +309,17 @@ export class MapboxGL extends React.Component {
   }
 
   onDrawCreate(evt, mode, options = {}) {
-    this.onFeatureEvent('drawn', this.props.drawing.sourceName, { type: 'FeatureCollection', features: evt.features });
+    this.onFeatureEvent('drawn', this.props.drawing.sourceName, {type: 'FeatureCollection', features: evt.features});
     const draw = this.draw;
-    window.setTimeout(function () {
+    window.setTimeout(function() {
       // allow to draw more features
       draw.changeMode(mode, options);
     }, 0);
   }
   onDrawModify(evt, mode, options = {}) {
-    this.onFeatureEvent('modified', this.props.drawing.sourceName, { type: 'FeatureCollection', features: evt.features });
+    this.onFeatureEvent('modified', this.props.drawing.sourceName, {type: 'FeatureCollection', features: evt.features});
     const draw = this.draw;
-    window.setTimeout(function () {
+    window.setTimeout(function() {
       draw.changeMode(mode, options);
     }, 0);
   }
@@ -337,7 +337,7 @@ export class MapboxGL extends React.Component {
 
   optionsForMode(mode, evt) {
     if (mode === DIRECT_SELECT_MODE) {
-      return { featureId: evt.features[0].id };
+      return {featureId: evt.features[0].id};
     }
     return {};
   }
@@ -549,4 +549,4 @@ function mapDispatchToProps(dispatch) {
 
 /** Export the connected class by default.
  */
-export default connect(mapStateToProps, mapDispatchToProps, undefined, { forwardRef: true })(MapboxGL);
+export default connect(mapStateToProps, mapDispatchToProps, undefined, {forwardRef: true})(MapboxGL);

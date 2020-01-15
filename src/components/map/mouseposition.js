@@ -12,7 +12,7 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 /** @module components/map/mouseposition
@@ -40,7 +40,7 @@ class MousePosition extends React.Component {
     if (mouseposition.lngLat !== null) {
       const text = this.props.templateFunction(mouseposition);
       return (
-        <div className={className} style={this.props.style} dangerouslySetInnerHTML={{ __html: text }} />
+        <div className={className} style={this.props.style} dangerouslySetInnerHTML={{__html: text}} />
       );
     } else {
       return false;

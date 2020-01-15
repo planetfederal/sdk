@@ -40,7 +40,7 @@ export default class SdkSpriteStyle extends IconStyle {
     if (img.width) {
       this.drawImage_();
     } else {
-      img.onload = function () {
+      img.onload = function() {
         self.drawImage_();
       };
     }
