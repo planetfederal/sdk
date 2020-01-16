@@ -10,7 +10,7 @@ const entry = common.getEntries(false);
 module.exports = {
   resolve: {
     alias: {
-      '@boundlessgeo/sdk': path.resolve(__dirname, 'src/'),
+      'webmap-sdk': path.resolve(__dirname, 'src/'),
     },
   },
   entry: entry,

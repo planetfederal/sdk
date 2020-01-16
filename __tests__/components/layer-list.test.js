@@ -10,17 +10,17 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 
-import MapReducer from '@boundlessgeo/sdk/reducers/map';
-import * as MapActions from '@boundlessgeo/sdk/actions/map';
+import MapReducer from 'webmap-sdk/reducers/map';
+import * as MapActions from 'webmap-sdk/actions/map';
 
-import MapInfoReducer from '@boundlessgeo/sdk/reducers/mapinfo';
-import {setSourceError} from '@boundlessgeo/sdk/actions/mapinfo';
+import MapInfoReducer from 'webmap-sdk/reducers/mapinfo';
+import {setSourceError} from 'webmap-sdk/actions/mapinfo';
 
-import {isLayerVisible} from '@boundlessgeo/sdk/util';
+import {isLayerVisible} from 'webmap-sdk/util';
 
-import LayerList from '@boundlessgeo/sdk/components/layer-list';
-import SdkLayerListItem from  '@boundlessgeo/sdk/components/layer-list-item';
-import {layerListItemTarget} from '@boundlessgeo/sdk/components/layer-list-item';
+import LayerList from 'webmap-sdk/components/layer-list';
+import SdkLayerListItem from  'webmap-sdk/components/layer-list-item';
+import {layerListItemTarget} from 'webmap-sdk/components/layer-list-item';
 
 configure({adapter: new Adapter()});
 

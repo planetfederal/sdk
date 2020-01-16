@@ -51,7 +51,7 @@ and do not need the latest features from the master branch.
 It will install the dist-version of the library.
 
 ```bash
-yarn add @boundlessgeo/sdk
+yarn add webmap-sdk
 ```
 
 ## Add a basic map:
@@ -61,7 +61,7 @@ yarn add @boundlessgeo/sdk
 In your favorite editor open `src/App.scss`. On the first line add:
 
 ```css
-@import "@boundlessgeo/sdk/stylesheet/sdk.scss";
+@import "webmap-sdk/stylesheet/sdk.scss";
 ```
 
 ### Import SDK and Redux
@@ -73,9 +73,9 @@ add the following imports:
 ```javascript
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import SdkMap from '@boundlessgeo/sdk/components/map';
-import SdkMapReducer from '@boundlessgeo/sdk/reducers/map';
-import * as SdkMapActions from '@boundlessgeo/sdk/actions/map';
+import SdkMap from 'webmap-sdk/components/map';
+import SdkMapReducer from 'webmap-sdk/reducers/map';
+import * as SdkMapActions from 'webmap-sdk/actions/map';
 ```
 
 ### Change from Functional Component to ES6 Class
@@ -166,7 +166,7 @@ yarn start
 
 ## Fin!
 
-Congratulations! You should have a fully operational Boundless SDK React app!
+Congratulations! You should have a fully operational Webmap SDK React app!
 
 ## Advanced
 
@@ -180,7 +180,7 @@ build the library, and finally add it to the app.
 
 ```bash
 cd ..
-git clone https://github.com/boundlessgeo/sdk
+git clone https://github.com/planetfederal/sdk
 cd sdk
 npm install
 npm run build:dist
@@ -190,4 +190,4 @@ yarn add file:../sdk/dist
 
 ### Unit testing
 If you want to write unit tests in your application that use the SDK, make sure you have ```canvas``` installed as a ```devDependency```.
-See [here](https://github.com/boundlessgeo/sdk/blob/master/DEVELOPING.md#testing-and-the-canvas-module) for more details.
+See [here](https://github.com/planetfederal/sdk/blob/master/DEVELOPING.md#testing-and-the-canvas-module) for more details.

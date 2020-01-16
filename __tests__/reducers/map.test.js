@@ -2,9 +2,9 @@
 
 import deepFreeze from 'deep-freeze';
 
-import reducer from '@boundlessgeo/sdk/reducers/map';
-import {MAP, CONTEXT} from '@boundlessgeo/sdk/action-types';
-import * as MapActions from '@boundlessgeo/sdk/actions/map';
+import reducer from 'webmap-sdk/reducers/map';
+import {MAP, CONTEXT} from 'webmap-sdk/action-types';
+import * as MapActions from 'webmap-sdk/actions/map';
 
 
 describe('map reducer', () => {

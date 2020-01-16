@@ -2,9 +2,9 @@
 
 import deepFreeze from 'deep-freeze';
 
-import * as actions from '@boundlessgeo/sdk/actions/drawing';
-import reducer from '@boundlessgeo/sdk/reducers/drawing';
-import {DRAWING} from '@boundlessgeo/sdk/action-types';
+import * as actions from 'webmap-sdk/actions/drawing';
+import reducer from 'webmap-sdk/reducers/drawing';
+import {DRAWING} from 'webmap-sdk/action-types';
 
 describe('drawing reducer', () => {
   it('should return the initial state', () => {

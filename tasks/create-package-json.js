@@ -31,7 +31,7 @@ function main() {
       } = packageData;
 
       const minimalPackage = {
-        name: '@boundlessgeo/sdk',
+        name: 'webmap-sdk',
         author,
         version,
         description,

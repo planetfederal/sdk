@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import fetch from 'isomorphic-fetch';
-import * as mapActions from '@boundlessgeo/sdk/actions/map';
+import * as mapActions from 'webmap-sdk/actions/map';
 
 /** Component for user to upload a mapbox style doc
  * or enter a URL.

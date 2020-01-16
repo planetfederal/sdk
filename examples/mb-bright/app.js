@@ -12,16 +12,16 @@ import {connect} from 'react-redux';
 import {Provider} from 'react-redux';
 
 import RendererSwitch from '../rendererswitch';
-import SdkZoomControl from '@boundlessgeo/sdk/components/map/zoom-control';
-import SdkLegend from '@boundlessgeo/sdk/components/legend';
-import SdkMapReducer from '@boundlessgeo/sdk/reducers/map';
-import SdkPrintReducer from '@boundlessgeo/sdk/reducers/print';
-import SdkMapboxReducer from '@boundlessgeo/sdk/reducers/mapbox';
-import * as mapActions from '@boundlessgeo/sdk/actions/map';
-import * as mapboxActions from '@boundlessgeo/sdk/actions/mapbox';
-import * as ContextSagas from '@boundlessgeo/sdk/sagas/context';
+import SdkZoomControl from 'webmap-sdk/components/map/zoom-control';
+import SdkLegend from 'webmap-sdk/components/legend';
+import SdkMapReducer from 'webmap-sdk/reducers/map';
+import SdkPrintReducer from 'webmap-sdk/reducers/print';
+import SdkMapboxReducer from 'webmap-sdk/reducers/mapbox';
+import * as mapActions from 'webmap-sdk/actions/map';
+import * as mapboxActions from 'webmap-sdk/actions/mapbox';
+import * as ContextSagas from 'webmap-sdk/sagas/context';
 // This will have webpack include all of the SDK styles.
-import '@boundlessgeo/sdk/stylesheet/sdk.scss';
+import 'webmap-sdk/stylesheet/sdk.scss';
 
 // create the saga middleware
 const saga_middleware = createSagaMiddleware();

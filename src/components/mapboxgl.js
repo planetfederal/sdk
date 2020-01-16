@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-present Boundless Spatial Inc., http://boundlessgeo.com
+ * Copyright 2015-present Planet Federal Inc., http://www.planet.com
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -120,7 +120,7 @@ export class MapboxGL extends React.Component {
       // center has not been set yet or differs
       if (prevProps.map.center === undefined ||
         (this.props.map.center[0] !== prevProps.map.center[0]
-        || this.props.map.center[1] !== prevProps.map.center[1])) {
+          || this.props.map.center[1] !== prevProps.map.center[1])) {
         this.map && this.map.setCenter(this.props.map.center);
       }
     }
@@ -140,7 +140,7 @@ export class MapboxGL extends React.Component {
       if (src && src.type === 'geojson') {
         const version_key = dataVersionKey(src_name);
         if (prevProps.map.metadata !== undefined &&
-            prevProps.map.metadata[version_key] !== this.props.map.metadata[version_key] && this.map) {
+          prevProps.map.metadata[version_key] !== this.props.map.metadata[version_key] && this.map) {
           const source = this.map.getSource(src_name);
           if (source !== undefined) {
             source.setData(this.props.map.sources[src_name].data);
@@ -150,13 +150,13 @@ export class MapboxGL extends React.Component {
     }
     // trigger a resize event when the size has changed or a redraw is requested.
     if (!optionalEquals(this.props, prevProps, 'mapinfo', 'size')
-        || !optionalEquals(this.props, prevProps, 'mapinfo', 'requestedRedraws')) {
+      || !optionalEquals(this.props, prevProps, 'mapinfo', 'requestedRedraws')) {
       this.map.resize();
     }
 
     // change the current interaction as needed
     if (this.props.drawing && (this.props.drawing.interaction !== prevProps.drawing.interaction
-        || this.props.drawing.sourceName !== prevProps.drawing.sourceName)) {
+      || this.props.drawing.sourceName !== prevProps.drawing.sourceName)) {
       this.updateInteraction(this.props.drawing);
     }
   }
@@ -400,7 +400,7 @@ export class MapboxGL extends React.Component {
       const drawCreate = (evt) => {
         this.onDrawCreate(evt, this.afterMode, this.optionsForMode(this.afterMode, evt));
       };
-      const drawModify =  (evt) => {
+      const drawModify = (evt) => {
         this.onDrawModify(evt, this.afterMode, this.optionsForMode(this.afterMode, evt));
       };
       this.map.off('draw.create', drawCreate);

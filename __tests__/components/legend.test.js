@@ -7,10 +7,10 @@ import Adapter from 'enzyme-adapter-react-16';
 
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
-import MapReducer from '@boundlessgeo/sdk/reducers/map';
+import MapReducer from 'webmap-sdk/reducers/map';
 
-import SdkLegend, {Legend} from '@boundlessgeo/sdk/components/legend';
-import {getLegend, getPointGeometry, getLineGeometry, getPolygonGeometry} from '@boundlessgeo/sdk/components/legend';
+import SdkLegend, {Legend} from 'webmap-sdk/components/legend';
+import {getLegend, getPointGeometry, getLineGeometry, getPolygonGeometry} from 'webmap-sdk/components/legend';
 
 configure({adapter: new Adapter()});
 

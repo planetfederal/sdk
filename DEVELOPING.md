@@ -1,4 +1,4 @@
-# Boundless SDK
+# Webmap SDK
 
 ## Using SDK from Source
 
@@ -7,7 +7,7 @@ which produces the structure used for the npm package.
 
 ```bash
 # Clone the repository
-git clone https://github.com/boundlessgeo/sdk.git
+git clone https://github.com/planetfederal/sdk.git
 # Enter the repo
 cd sdk
 # install dependencies
@@ -44,7 +44,7 @@ This is reolved by adding to package.json
 ```javascript
     "jest": {
         "transformIgnorePatterns": [
-            "/node_modules/(?!(@boundlessgeo|@mapbox|ol|ol-mapbox-style)).*/.*js$"
+            "/node_modules/(?!(webmap-sdk|@mapbox|ol|ol-mapbox-style)).*/.*js$"
         ]
     }
 ```
@@ -127,7 +127,7 @@ Add to `package.json` jest config
 ```javascript
   "jest": {
     "transformIgnorePatterns": [
-      "/node_modules/(?!(@boundlessgeo|@mapbox|ol|ol-mapbox-style)).*/.*js$"
+      "/node_modules/(?!(webmap-sdk|@mapbox|ol|ol-mapbox-style)).*/.*js$"
     ],
     "transform": {
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",

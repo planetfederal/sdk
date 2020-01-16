@@ -13,12 +13,12 @@ import {DragDropContext} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
 import RendererSwitch from '../rendererswitch';
-import SdkZoomControl from '@boundlessgeo/sdk/components/map/zoom-control';
-import SdkMapReducer from '@boundlessgeo/sdk/reducers/map';
-import * as mapActions from '@boundlessgeo/sdk/actions/map';
-import SdkLayerList from '@boundlessgeo/sdk/components/layer-list';
+import SdkZoomControl from 'webmap-sdk/components/map/zoom-control';
+import SdkMapReducer from 'webmap-sdk/reducers/map';
+import * as mapActions from 'webmap-sdk/actions/map';
+import SdkLayerList from 'webmap-sdk/components/layer-list';
 
-import '@boundlessgeo/sdk/stylesheet/sdk.scss';
+import 'webmap-sdk/stylesheet/sdk.scss';
 import WMSPopup from './wmspopup';
 import AddWMSLayer from './addwmslayer';
 

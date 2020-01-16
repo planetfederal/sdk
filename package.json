@@ -1,7 +1,10 @@
 {
-  "name": "@boundlessgeo/sdk",
-  "version": "2.7.5",
-  "description": "Boundless Web SDK",
+  "name": "webmap-sdk",
+  "version": "2.8.5",
+  "description": "Webmap SDK",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "webpack-dev-server --config webpack-dev-server.config.js --open --open-page 'build/examples'",
     "serve": "webpack-dev-server --config webpack-dev-server.config.js",
@@ -9,6 +12,7 @@
     "test": "jest --maxWorkers=2",
     "test:watch": "npm test -- --watch",
     "lint": "eslint __tests__ src examples tasks",
+    "lint-fix": "eslint __tests__ src examples tasks --fix",
     "cover": "node_modules/.bin/jest --coverage",
     "sass": "node-sass --include-path ./node_modules ./src/stylesheet/sdk.scss",
     "build:examples": "node tasks/build-examples.js",
@@ -40,7 +44,7 @@
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
-    "@mapbox/mapbox-gl-draw": "^1.0.4",
+    "@mapbox/mapbox-gl-draw": "^1.1.1",
     "@mapbox/mapbox-gl-draw-static-mode": "^1.0.1",
     "@turf/area": "^5.0.4",
     "@turf/distance": "^5.0.4",
@@ -66,7 +70,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.0.2",
     "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-react": "^7.1.0",
+    "eslint-plugin-react": "^7.17.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "fs-extra": "^4.0.2",
     "handlebars": "^4.0.10",
@@ -81,7 +85,7 @@
     "metalsmith-rootpath": "^1.0.4",
     "mixin": "^0.2.0",
     "nock": "^9.0.13",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.12",
     "ol": "^5.0.0",
     "ol-mapbox-style": "^3.0.1",
     "raf": "^3.4.0",
@@ -105,36 +109,31 @@
     "@mapbox/mapbox-gl-style-spec": "^12.0.0",
     "fetch-jsonp": "^1.1.3",
     "isomorphic-fetch": "^2.2.1",
-    "prop-types": "^15.5.10",
+    "prop-types": "^15.7.2",
     "react-docgen": "^2.19.0",
-    "redux-saga": "^0.16.0",
-    "uuid": "^3.1.0"
+    "redux-saga": "^0.16.0"
   },
   "peerDependencies": {
     "@mapbox/mapbox-gl-draw": "^1.0.4",
     "@mapbox/mapbox-gl-draw-static-mode": "^1.0.1",
     "@turf/area": "^5.0.4",
     "@turf/distance": "^5.0.4",
-    "mapbox-gl": "^0.42.0",
-    "ol": "^5.0.0",
     "ol-mapbox-style": "^3.0.1",
     "react": "^16.0.0",
     "react-dnd": "^2.5.4",
     "react-dnd-html5-backend": "^2.5.4",
-    "react-dom": "^16.0.0",
-    "react-redux": "^5.0.5",
-    "redux": "^3.6.0"
+    "react-dom": "^16.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/boundlessgeo/sdk.git"
+    "url": "git+https://github.com/planetfederal/sdk.git"
   },
-  "author": "Boundless Spatial, Inc.",
+  "author": "Planet Federal",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/boundlessgeo/sdk/issues"
+    "url": "https://github.com/planetfederal/sdk/issues"
   },
-  "homepage": "https://github.com/boundlessgeo/sdk#readme",
+  "homepage": "https://github.com/planetfederal/sdk#readme",
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"

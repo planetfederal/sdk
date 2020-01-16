@@ -33,8 +33,8 @@ function createIndex(files, metalsmith, done) {
   // eslint-disable-next-line no-param-reassign
   files['examples.html'] = {
     layout: 'index.html',
-    title: 'Boundless SDK Examples',
-    pageTitle: 'Boundless SDK in action',
+    title: 'Webmap SDK Examples',
+    pageTitle: 'Webmap SDK in action',
     contents: Buffer.from(index),
     mode: '0644',
   };

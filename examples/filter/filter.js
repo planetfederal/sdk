@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as mapActions from '@boundlessgeo/sdk/actions/map';
+import * as mapActions from 'webmap-sdk/actions/map';
 import PropTypes from 'prop-types';
 
 // Custom Filter Component
