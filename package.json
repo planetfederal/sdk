@@ -1,9 +1,9 @@
 {
   "name": "webmap-sdk",
-  "version": "2.8.2",
+  "version": "2.8.5",
   "description": "Webmap SDK",
   "files": [
-    "/dist/*"
+    "dist"
   ],
   "scripts": {
     "start": "webpack-dev-server --config webpack-dev-server.config.js --open --open-page 'build/examples'",
