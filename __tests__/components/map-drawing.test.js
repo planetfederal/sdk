@@ -10,7 +10,7 @@
 
 import React from 'react';
 import {mount, configure} from 'enzyme';
-import  Adapter from 'enzyme-adapter-react-16';
+import Adapter from 'enzyme-adapter-react-16';
 
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
@@ -67,7 +67,7 @@ describe('Map component with drawing', () => {
             type: 'Point',
             coordinates: [0, 0],
           },
-          properties: { },
+          properties: {},
         }],
       },
     }));
@@ -299,7 +299,7 @@ describe('Map component with drawing', () => {
 
   it('handles deselect', () => {
     const props = {};
-    props.onFeatureDeselected = () => {};
+    props.onFeatureDeselected = () => { };
     let mapRef = React.createRef();
     props.ref = mapRef;
     spyOn(props, 'onFeatureDeselected');
@@ -500,6 +500,6 @@ describe('Map component with drawing', () => {
     const feature = new Feature(new Polygon([[[-1, -1], [-1, 1], [1, 1], [1, -1], [-1, -1]]]));
     feature.set('PERSONS', 2000000);
     const styleFunc = getOLStyleFunctionFromMapboxStyle(mbStyle);
-    expect(styleFunc(feature, 1).length).toEqual(2);
+    expect(styleFunc(feature, 1).length).toEqual(1);
   });
 });

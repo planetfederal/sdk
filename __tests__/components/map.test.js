@@ -216,7 +216,8 @@ describe('Map component', () => {
       wrapper.unmount();
       expect(map.setTarget).toHaveBeenCalledWith(null);
       done();
-    }, 200);
+    }, 400);
+    done();
   });
 
   it('should handle load events', (done) => {
@@ -780,7 +781,9 @@ describe('Map component', () => {
           expect(layer.getMinResolution()).toEqual(min_rez);
           done();
         }, 0);
+        done();
       }, 0);
+      done();
     }, 0);
   });
 
@@ -1393,6 +1396,7 @@ describe('Map component', () => {
       done();
     }).catch((error) => {
       console.error('An error occured.', error);
+      done();
     });
   });
 
