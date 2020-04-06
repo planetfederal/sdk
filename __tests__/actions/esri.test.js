@@ -1,7 +1,7 @@
 /* global describe, it, expect */
 
-import * as actions from '@boundlessgeo/sdk/actions/esri';
-import {ESRI} from '@boundlessgeo/sdk/action-types';
+import * as actions from 'webmap-sdk/actions/esri';
+import {ESRI} from 'webmap-sdk/action-types';
 
 describe('test that esri actions are properly created', () => {
 

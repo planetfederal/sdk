@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-present Boundless Spatial Inc., http://boundlessgeo.com
+ * Copyright 2015-present Planet Federal Inc., http://www.planet.com
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,9 +18,9 @@ import * as mapActions from '../../actions/map';
 
 /** @module components/map/zoom-control
  * @example
- * import SdkZoomControl from '@boundlessgeo/sdk/components/map/zoom-control';
+ * import SdkZoomControl from 'webmap-sdk/components/map/zoom-control';
  * import { Provider } from 'react-redux';
- * import SdkMap from '@boundlessgeo/sdk/components/map';
+ * import SdkMap from 'webmap-sdk/components/map';
  * import ReactDOM from 'react-dom';
  *
  * ReactDOM.render(<Provider store={store}>

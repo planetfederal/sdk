@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-present Boundless Spatial Inc., http://boundlessgeo.com
+ * Copyright 2015-present Planet Federal Inc., http://www.planet.com
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -62,7 +62,7 @@ function getRemoteLegend(href) {
   // kick off the href fun!
   fetch(href).then(response => response.text())
     .then((html) => {
-    // This is equivalent to dangerouslySetInnerHTML
+      // This is equivalent to dangerouslySetInnerHTML
       if (ref !== null) {
         ref.innerHTML = html;
       }
@@ -403,7 +403,7 @@ export class Legend extends React.Component {
 
     return (
       <div style={this.props.style} className={className}>
-        { legend_contents }
+        {legend_contents}
       </div>
     );
   }

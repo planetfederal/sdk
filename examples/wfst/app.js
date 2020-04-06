@@ -12,23 +12,23 @@ import ReactDOM from 'react-dom';
 
 import {Provider} from 'react-redux';
 
-import SdkMap from '@boundlessgeo/sdk/components/map';
-import SdkZoomControl from '@boundlessgeo/sdk/components/map/zoom-control';
-import SdkHashHistory from '@boundlessgeo/sdk/components/history';
-import SdkMapReducer from '@boundlessgeo/sdk/reducers/map';
-import SdkDrawingReducer from '@boundlessgeo/sdk/reducers/drawing';
-import SdkWfsReducer from '@boundlessgeo/sdk/reducers/wfs';
+import SdkMap from 'webmap-sdk/components/map';
+import SdkZoomControl from 'webmap-sdk/components/map/zoom-control';
+import SdkHashHistory from 'webmap-sdk/components/history';
+import SdkMapReducer from 'webmap-sdk/reducers/map';
+import SdkDrawingReducer from 'webmap-sdk/reducers/drawing';
+import SdkWfsReducer from 'webmap-sdk/reducers/wfs';
 
-import * as SdkDrawingActions from '@boundlessgeo/sdk/actions/drawing';
-import * as SdkWfsActions from '@boundlessgeo/sdk/actions/wfs';
+import * as SdkDrawingActions from 'webmap-sdk/actions/drawing';
+import * as SdkWfsActions from 'webmap-sdk/actions/wfs';
 
 
-import WfsController from '@boundlessgeo/sdk/components/wfs';
+import WfsController from 'webmap-sdk/components/wfs';
 
-import * as SdkMapActions from '@boundlessgeo/sdk/actions/map';
+import * as SdkMapActions from 'webmap-sdk/actions/map';
 
 // This will have webpack include all of the SDK styles.
-import '@boundlessgeo/sdk/stylesheet/sdk.scss';
+import 'webmap-sdk/stylesheet/sdk.scss';
 
 import EditPanel from './edit-panel';
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-present Boundless Spatial Inc., http://boundlessgeo.com
+ * Copyright 2015-present Planet Federal Inc., http://www.planet.com
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -115,12 +115,12 @@ class WfsController extends Component {
           throw Error(response.statusText);
         }
       }).then(text => (new window.DOMParser()).parseFromString(text, 'text/xml'))
-        .then(data  => {
-        // A 200 does not necessarily mean the
-        //  request was successful.  This attempts to
-        //  parse the transaction response and then passes
-        //  it to onFinishTransaction. Handling is left to the
-        //  user.
+        .then(data => {
+          // A 200 does not necessarily mean the
+          //  request was successful.  This attempts to
+          //  parse the transaction response and then passes
+          //  it to onFinishTransaction. Handling is left to the
+          //  user.
           if (data.documentElement.localName === 'ExceptionReport') {
             const exceptionNode = data.getElementsByTagNameNS('http://www.opengis.net/ows', 'ExceptionText');
             throw Error(exceptionNode.item(0).textContent);
@@ -135,7 +135,7 @@ class WfsController extends Component {
             this.props.onFinishTransaction(wfs_response, action);
           }
         }).catch((error) => {
-        // ensure the action is removed from the state
+          // ensure the action is removed from the state
           this.props.dispatch(finishedAction(id));
           // remove it from the pending actions
           delete this.pendingActions[id];
@@ -190,9 +190,9 @@ WfsController.propTypes = {
 WfsController.defaultProps = {
   actions: {},
   sources: {},
-  onStartTransaction: () => {},
-  onFinishTransaction: () => {},
-  onRequestError: () => {},
+  onStartTransaction: () => { },
+  onFinishTransaction: () => { },
+  onRequestError: () => { },
   fetchOptions: {
     credentials: 'same-origin',
   },

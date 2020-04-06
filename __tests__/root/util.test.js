@@ -1,7 +1,7 @@
 /* global it, describe, expect */
 
-import * as util from '@boundlessgeo/sdk/util';
-import {GROUP_KEY, TITLE_KEY} from '@boundlessgeo/sdk/constants';
+import * as util from 'webmap-sdk/util';
+import {GROUP_KEY, TITLE_KEY} from 'webmap-sdk/constants';
 
 describe('util', () => {
   it('calculates the resolution for zoom', () => {

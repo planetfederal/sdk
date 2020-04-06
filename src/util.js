@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-present Boundless Spatial Inc., http://boundlessgeo.com
+ * Copyright 2015-present Planet Federal Inc., http://www.planet.com
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,7 @@ import {transformExtent} from 'ol/proj';
 import View from 'ol/View';
 
 /** @module util
- * @desc functions for Boundless SDK.
+ * @desc functions for Webmap SDK.
  *
  *  This is the grab bag of universally useful functions.
  */

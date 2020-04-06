@@ -1,7 +1,7 @@
 /* global describe, it, expect */
 
-import * as actions from '@boundlessgeo/sdk/actions/mapinfo';
-import {MAPINFO} from '@boundlessgeo/sdk/action-types';
+import * as actions from 'webmap-sdk/actions/mapinfo';
+import {MAPINFO} from 'webmap-sdk/action-types';
 
 describe('test that mapinfo actions are properly created', () => {
 

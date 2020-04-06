@@ -11,11 +11,11 @@ const distDir = path.join(__dirname, '..', 'dist');
 
 // HEADER for the README.md file.
 const README_HEADER = `
-# Boundless SDK
-![Logo](http://boundlessgeo.github.io/sdk/book/styles/boundless_sdk_horiz.svg)
+# Webmap SDK
+![Logo](https://raw.githubusercontent.com/planetfederal/sdk/master/logo.png)
 
-[![Travis CI Status](https://secure.travis-ci.org/boundlessgeo/sdk.svg)](http://travis-ci.org/#!/boundlessgeo/sdk)
-[![Coverage Status](https://coveralls.io/repos/github/boundlessgeo/sdk/badge.svg?branch=master)](https://coveralls.io/github/boundlessgeo/sdk?branch=master)
+[![Travis CI Status](https://secure.travis-ci.org/planetfederal/sdk.svg)](http://travis-ci.org/#!/planetfederal/sdk)
+[![Coverage Status](https://coveralls.io/repos/github/planetfederal/sdk/badge.svg?branch=master)](https://coveralls.io/github/planetfederal/sdk?branch=master)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Javascript SDK based on React, OpenLayers and Redux.

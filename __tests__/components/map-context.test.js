@@ -11,10 +11,10 @@ import XYZSource from 'ol/source/XYZ';
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 
-import ConnectedMap from '@boundlessgeo/sdk/components/map';
-import MapReducer from '@boundlessgeo/sdk/reducers/map';
-import * as MapActions from '@boundlessgeo/sdk/actions/map';
-import * as ContextSagas from '@boundlessgeo/sdk/sagas/context';
+import ConnectedMap from 'webmap-sdk/components/map';
+import MapReducer from 'webmap-sdk/reducers/map';
+import * as MapActions from 'webmap-sdk/actions/map';
+import * as ContextSagas from 'webmap-sdk/sagas/context';
 
 configure({adapter: new Adapter()});
 

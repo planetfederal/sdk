@@ -1,6 +1,6 @@
 /* global it, beforeEach, describe, expect, spyOn */
 
-import SdkSpriteStyle from '@boundlessgeo/sdk/style/sprite';
+import SdkSpriteStyle from 'webmap-sdk/style/sprite';
 import canvas from 'canvas';
 
 // this is kind of a hack to have tests work in jest

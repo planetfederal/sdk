@@ -4,7 +4,7 @@ import VectorSource from 'ol/source/Vector';
 import Feature from 'ol/Feature';
 import PointGeom from 'ol/geom/Point';
 
-import SdkClusterSource from '@boundlessgeo/sdk/source/cluster';
+import SdkClusterSource from 'webmap-sdk/source/cluster';
 
 describe('Cluster source', () => {
   it('should set cluster count', () => {

@@ -2,8 +2,8 @@
 
 import deepFreeze from 'deep-freeze';
 
-import reducer from '@boundlessgeo/sdk/reducers/mapbox';
-import {MAPBOX} from '@boundlessgeo/sdk/action-types';
+import reducer from 'webmap-sdk/reducers/mapbox';
+import {MAPBOX} from 'webmap-sdk/action-types';
 
 describe('Mapbox reducer', () => {
   it('should return default state', () => {
