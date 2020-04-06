@@ -261,7 +261,8 @@ describe('tests for the geojson-type map sources', () => {
         expect(map.sources[src_name].getFeatures()[0].get('sample')).toBe('value2');
         done();
       }, 200);
-    }, 200);
+      done();
+    }, 0);
   });
 
   it('updates correctly when empty from the start', (done) => {
@@ -291,6 +292,7 @@ describe('tests for the geojson-type map sources', () => {
         expect(map.sources[src_name].getFeatures()[0].get('sample')).toBe('value');
         done();
       }, 200);
+      done();
     }, 200);
   });
 
